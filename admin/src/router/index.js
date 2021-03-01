@@ -10,15 +10,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "main" */ '../views/Main.vue'),
     children: [
       {
-        path: '/categories/create',
+        path: '/category/create',
         component: () => import(/* webpackChunkName: "categoryedit" */ '../views/CategoryEdit.vue')
       },
       {
-        path: '/categories/list',
+        path: '/category/list',
         component: () => import(/* webpackChunkName: "categorylist" */ '../views/CategoryList.vue')
       },
       {
-        path: '/categories/edit/:id',
+        path: '/category/edit/:id',
         component: () => import(/* webpackChunkName: "categoryedit" */ '../views/CategoryEdit.vue'),
         props: true
       },

@@ -26,18 +26,18 @@ export default {
   methods: {
     async save() {
       if (this.id) {
-        await this.$http.put(`categories/${this.id}`, this.model)
+        await this.$http.put(`rest/category/${this.id}`, this.model)
       } else {
-        await this.$http.post('categories', this.model)
+        await this.$http.post('rest/category', this.model)
       }
-      this.$router.push('/categories/list')
+      this.$router.push('/category/list')
       this.$message({
         type: 'success',
         message: '保存成功！',
       })
     },
     async fetch() {
-      const res = await this.$http.get(`categories/${this.id}`)
+      const res = await this.$http.get(`rest/category/${this.id}`)
       this.model = res.data
     },
   },
