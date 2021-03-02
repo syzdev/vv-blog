@@ -38,6 +38,20 @@ const routes = [
       },
 
       {
+        path: '/admin/create',
+        component: () => import(/* webpackChunkName: "adminedit" */ '../views/AdminEdit.vue')
+      },
+      {
+        path: '/admin/list',
+        component: () => import(/* webpackChunkName: "adminlist" */ '../views/AdminList.vue')
+      },
+      {
+        path: '/admin/edit/:id',
+        component: () => import(/* webpackChunkName: "adminedit" */ '../views/AdminEdit.vue'),
+        props: true
+      },
+
+      {
         path: '/avatar/create',
         component: () => import(/* webpackChunkName: "avataredit" */ '../views/AvatarEdit.vue')
       },

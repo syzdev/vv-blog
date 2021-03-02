@@ -9,7 +9,7 @@
           <el-button
             type="primary"
             size="small"
-            @click="$router.push(`edit/${scope.row._id}`)"
+            @click="$router.push(`/article/edit/${scope.row._id}`)"
             >编辑</el-button
           >
           <el-button type="primary" size="small" @click="remove(scope.row)"
