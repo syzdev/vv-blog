@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 100vh;">
+  <el-container style="height: 100vh">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu router :default-openeds="['1', '3']">
         <el-submenu index="1">
@@ -11,9 +11,16 @@
             <el-menu-item index="/category/create">新建分类</el-menu-item>
             <el-menu-item index="/category/list">分类列表</el-menu-item>
           </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">文章</template>
+            <el-menu-item index="/article/create">新建文章</el-menu-item>
+            <el-menu-item index="/article/list">文章列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">头像</template>
+            <el-menu-item index="/avatar/create">头像上传</el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
-
-
       </el-menu>
     </el-aside>
 

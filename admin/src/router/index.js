@@ -22,6 +22,25 @@ const routes = [
         component: () => import(/* webpackChunkName: "categoryedit" */ '../views/CategoryEdit.vue'),
         props: true
       },
+      
+      {
+        path: '/article/create',
+        component: () => import(/* webpackChunkName: "articleedit" */ '../views/ArticleEdit.vue')
+      },
+      {
+        path: '/article/list',
+        component: () => import(/* webpackChunkName: "articlelist" */ '../views/ArticleList.vue')
+      },
+      {
+        path: '/article/edit/:id',
+        component: () => import(/* webpackChunkName: "articleedit" */ '../views/ArticleEdit.vue'),
+        props: true
+      },
+
+      {
+        path: '/avatar/create',
+        component: () => import(/* webpackChunkName: "avataredit" */ '../views/AvatarEdit.vue')
+      },
     ]
   },
 ]
