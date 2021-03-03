@@ -8,7 +8,8 @@ const schema = new mongoose.Schema({
     set(val) {
       return require('bcrypt').hashSync(val, 10)
     }
-  }
+  },
+  avatar: { type: String }
 })
 
 module.exports = mongoose.model('Admin', schema, 'Admin')

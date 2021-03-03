@@ -4,6 +4,11 @@
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="300"> </el-table-column>
       <el-table-column prop="username" label="用户名"> </el-table-column>
+      <el-table-column prop="avatar" label="头像">
+        <template slot-scope="scope">
+          <img :src="scope.row.avatar" style="height: 3rem" />
+        </template>
+      </el-table-column>
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button
@@ -34,11 +39,15 @@ export default {
       this.items = res.data
     },
     async remove(row) {
-      this.$confirm(`此操作将永久删除账号【${row.username}】, 是否继续?`, '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      }).then(async () => {
+      this.$confirm(
+        `此操作将永久删除账号【${row.username}】, 是否继续?`,
+        '提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }
+      ).then(async () => {
         await this.$http.delete(`rest/admin/${row._id}`)
         this.$message({
           type: 'success',
