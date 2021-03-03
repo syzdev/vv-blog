@@ -7,12 +7,13 @@
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button
+            icon="el-icon-edit"
             type="primary"
             size="small"
             @click="$router.push(`/article/edit/${scope.row._id}`)"
             >编辑</el-button
           >
-          <el-button type="danger" size="small" @click="remove(scope.row)"
+          <el-button type="danger" size="small" @click="remove(scope.row)" icon="el-icon-delete"
             >删除</el-button
           >
         </template>
