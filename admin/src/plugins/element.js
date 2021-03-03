@@ -25,6 +25,7 @@ import {
   Select,
   Option,
   Card,
+  Avatar,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -48,6 +49,7 @@ Vue.use(Upload)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Card)
+Vue.use(Avatar)
 
 Vue.prototype.$message = Message
 Vue.prototype.$msgbox = MessageBox

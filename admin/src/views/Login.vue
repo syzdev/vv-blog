@@ -31,6 +31,8 @@ export default {
       const res = await this.$http.post('login', this.model)
       // 1. 浏览器长时间保存
       localStorage.token = res.data.token
+      localStorage.username = res.data.username
+      localStorage.avatar = res.data.avatar
       // 2. 浏览器关闭之后就自动删除
       // sessionStorage.token = res.data.token
       // 登录成功跳转到首页

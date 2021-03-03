@@ -6,7 +6,7 @@
       <el-table-column prop="username" label="用户名"> </el-table-column>
       <el-table-column prop="avatar" label="头像">
         <template slot-scope="scope">
-          <img :src="scope.row.avatar" style="height: 3rem" />
+          <el-avatar shape="square" :size="50" :src="scope.row.avatar" ></el-avatar>
         </template>
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="200">
@@ -17,7 +17,7 @@
             @click="$router.push(`/admin/edit/${scope.row._id}`)"
             >编辑</el-button
           >
-          <el-button type="primary" size="small" @click="remove(scope.row)"
+          <el-button type="danger" size="small" @click="remove(scope.row)"
             >删除</el-button
           >
         </template>

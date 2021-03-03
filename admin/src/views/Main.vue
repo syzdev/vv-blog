@@ -22,30 +22,30 @@
           </el-menu-item-group>
         </el-submenu>
         <el-submenu index="2">
-          <template slot="title"
-            ><i class="el-icon-user"></i>账号管理</template
-          >
+          <template slot="title"><i class="el-icon-user"></i>账号管理</template>
           <el-menu-item-group>
             <template slot="title">账号</template>
             <el-menu-item index="/admin/create">新建账号</el-menu-item>
             <el-menu-item index="/admin/list">账号列表</el-menu-item>
           </el-menu-item-group>
-
         </el-submenu>
       </el-menu>
     </el-aside>
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <el-dropdown>
-          <i class="el-icon-setting" style="margin-right: 15px"></i>
+        <!-- <i class="el-icon-setting" style="margin-right: 15px"></i> -->
+        <!-- <span>王小虎</span> -->
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link">
+            <el-avatar shape="square" :size="40" :src="avatar" style="vertical-align: middle;"></el-avatar>
+            {{username}}
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-switch-button" @click.native="loginOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>王小虎</span>
       </el-header>
 
       <el-main>
@@ -58,14 +58,23 @@
 <script>
 export default {
   data() {
-    const item = {
-      date: '2016-05-02',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄',
-    }
     return {
-      tableData: Array(20).fill(item),
+      username: '',
+      avatar: ''
     }
+  },
+  methods: {
+    loginOut() {
+      localStorage.clear()
+      this.$router.push('/login')
+    },
+    loadUserInfo() {
+      this.username = localStorage.getItem('username')
+      this.avatar = localStorage.getItem('avatar')
+    }
+  },
+  created() {
+    this.loadUserInfo()
   },
 }
 </script>

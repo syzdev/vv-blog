@@ -63,7 +63,7 @@ module.exports = app => {
     assert(isValid, 422, '密码错误！')
     // 返回token
     const token = jwt.sign({ id: user._id }, app.get('secret'))
-    res.send({ token })
+    res.send({ token, username, avatar: user.avatar })
   })
 
   // 错误处理函数，处理assert抛出的异常
