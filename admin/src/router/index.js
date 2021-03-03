@@ -57,10 +57,24 @@ const routes = [
       },
     ]
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    meta: {ignoreAuth: true}
+  }
 ]
 
 const router = new VueRouter({
   routes
+})
+
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta.ignoreAuth && !localStorage.token) {
+    return next('/login')
+  }
+  next()
 })
 
 export default router

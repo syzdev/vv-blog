@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+app.set('secret', 'syzdevinsist')
+
 app.use(require('cors')())
 app.use(express.json())
 require('./routes/admin')(app)

@@ -5,7 +5,8 @@
       <el-form-item>
         <el-upload
           class="avatar-uploader"
-          :action="$http.defaults.baseURL + '/upload'"
+          :action="uploadURL"
+          :headers="getAuthHeaders()"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
         >
