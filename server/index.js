@@ -5,8 +5,8 @@ app.set('secret', 'syzdevinsist')
 
 app.use(require('cors')())
 app.use(express.json())
-require('./routes/admin')(app)
 require('./plugins/db')(app)
+require('./routes/admin')(app)
 
 // 上传文件夹静态文件托管
 app.use('/uploads', express.static(__dirname + '/uploads'))

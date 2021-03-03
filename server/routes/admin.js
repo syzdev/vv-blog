@@ -1,8 +1,8 @@
 module.exports = app => {
   const express = require('express')
-  const Admin = require('../models/Admin')
-  const jwt = require('jsonwebtoken')
   const assert = require('http-assert')
+  const jwt = require('jsonwebtoken')
+  const Admin = require('../models/Admin')
   // 合并参数，使router能够获取到URL的动态参数
   const router = express.Router({
     mergeParams: true
@@ -35,32 +35,17 @@ module.exports = app => {
     })
   })
 
-  const authMiddleware = async (req, res, next) => {
-    // authorization的格式是Bearer xxxxxxxxxxxxx，按空格分隔在提取最后一个元素，就能拿到token
-    const token = String(req.headers.authorization || '').split(' ').pop()
-    assert(token, 401, '请先登录！')
-    // 通过token和密钥能够解析出jwt.sign时传入的用户id
-    const { id } = jwt.verify(token, app.get('secret'))
-    assert(id, 401, '请先登录！')
-    // 通过id查找用户
-    req.user = await Admin.findById(id)
-    assert(req.user, 401, '请先登录！')
-    await next()
-  }
+  const authMiddleware = require('../middleware/auth')
+  const resourceMiddleware = require('../middleware/resource')
 
-  const resourceMiddleware = async (req, res, next) => {
-    req.Model = require(`../models/${req.params.resource}`)
-    await next()
-  }
-
-  app.use('/admin/api/rest/:resource', authMiddleware, resourceMiddleware, router)
+  app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
 
   // 图片上传
   const multer = require('multer')
   const upload = multer({
     dest: __dirname + '/../uploads'
   })
-  app.post('/admin/api/upload', authMiddleware, upload.single('file'), async (req, res) => {
+  app.post('/admin/api/upload', authMiddleware(), upload.single('file'), async (req, res) => {
     const file = req.file
     file.url = `http://localhost:3000/uploads/${file.filename}`
     res.send(file)
