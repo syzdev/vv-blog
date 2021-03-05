@@ -8,5 +8,6 @@ module.exports = app => {
     res.send(model)
   })
 
+
   app.use('/web/api', router)
 }

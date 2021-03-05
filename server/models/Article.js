@@ -7,6 +7,9 @@ const schema = new mongoose.Schema({
   }],
   title: { type: String },
   body: { type: String }
+}, {
+  // 添加时间戳，包含createAt和updateAt
+  timestamps: true
 })
 
 module.exports = mongoose.model('Article', schema, 'Article')
