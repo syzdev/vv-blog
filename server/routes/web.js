@@ -10,7 +10,7 @@ module.exports = app => {
   })
 
   router.get('/article/list', async (req, res) => {
-    const model = await Article.find().limit(10)
+    const model = await Article.find().populate('category').limit(10)
     res.send(model)
   })
 
