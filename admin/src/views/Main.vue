@@ -66,11 +66,12 @@ export default {
   methods: {
     loginOut() {
       localStorage.clear()
+      sessionStorage.clear()
       this.$router.push('/login')
     },
     loadUserInfo() {
-      this.username = localStorage.getItem('username')
-      this.avatar = localStorage.getItem('avatar')
+      this.username = localStorage.getItem('username') || sessionStorage.getItem('username')
+      this.avatar = localStorage.getItem('avatar') || sessionStorage.getItem('avatar')
     }
   },
   created() {

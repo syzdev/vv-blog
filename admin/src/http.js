@@ -8,8 +8,8 @@ const http = axios.create({
 
 // 给http请求添加拦截器，用于添加用户信息
 http.interceptors.request.use(config => {
-  if (localStorage.token) {
-    config.headers.Authorization = 'Bearer ' + (localStorage.token || '')
+  if (localStorage.token || sessionStorage.token) {
+    config.headers.Authorization = 'Bearer ' + (localStorage.token || sessionStorage.token || '')
   }
   return config;
 }, function (error) {

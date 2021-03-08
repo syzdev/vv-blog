@@ -22,7 +22,7 @@ Vue.mixin({
   methods: {
     getAuthHeaders() {
       return {
-        Authorization: `Bearer ${localStorage.token || ''}`
+        Authorization: `Bearer ${localStorage.token || sessionStorage.token || ''}`
       }
     }
   }

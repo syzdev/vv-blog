@@ -10,7 +10,8 @@
           <el-input show-password v-model="model.password"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" native-type="submit">登录</el-button>
+          <el-checkbox v-model="loginOption">记住登录状态</el-checkbox>
+          <el-button class="login-button" type="primary" native-type="submit">登录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -23,18 +24,24 @@ export default {
     return {
       model: {
 
-      }
+      },
+      loginOption: null
     }
   },
   methods: {
     async login() {
       const res = await this.$http.post('login', this.model)
-      // 1. 浏览器长时间保存
-      localStorage.token = res.data.token
-      localStorage.username = res.data.username
-      localStorage.avatar = res.data.avatar
-      // 2. 浏览器关闭之后就自动删除
-      // sessionStorage.token = res.data.token
+      if (this.loginOption) {
+        // 浏览器长时间保存
+        localStorage.token = res.data.token
+        localStorage.username = res.data.username
+        localStorage.avatar = res.data.avatar
+      } else {
+        // 浏览器关闭之后就自动删除
+        sessionStorage.token = res.data.token
+        sessionStorage.username = res.data.username
+        sessionStorage.avatar = res.data.avatar
+      }
       // 登录成功跳转到首页
       this.$router.push('/')
       this.$message({
@@ -49,6 +56,9 @@ export default {
 <style>
 .login-card {
   width: 25rem;
-  margin: 10rem auto;
+  margin: 15rem auto;
+}
+.login-button {
+  margin-left: 60px;
 }
 </style>

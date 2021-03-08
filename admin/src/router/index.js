@@ -71,7 +71,7 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
-  if (!to.meta.ignoreAuth && !localStorage.token) {
+  if (!to.meta.ignoreAuth && (!localStorage.token && !sessionStorage.token)) {
     return next('/login')
   }
   next()
