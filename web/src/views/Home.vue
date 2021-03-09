@@ -13,14 +13,16 @@
       </div>
     </div>
     <div class="content">
-      <div class="article-card" v-for="item in items" :key="item._id">
-        <div class="articel-title">
-          <div class="article-category" v-for="category in item.category" :key="category._id">[{{category.name}}]</div>
-          {{item.title}}
+      <transition-group name="slide-fade" tag="div">
+        <div class="article-card" v-for="item in items" :key="item._id">
+          <div class="articel-title">
+            <div class="article-category" v-for="category in item.category" :key="category._id">[{{category.name}}]</div>
+            {{item.title}}
+          </div>
+          <div class="article-desc">{{item.body}}</div>
+          <div class="article-detail">posted @ {{item.updatedAt|timeFormat}}</div>
         </div>
-        <div class="article-desc">{{item.body}}</div>
-        <div class="article-detail">posted @ {{item.updatedAt|timeFormat}}</div>
-      </div>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -115,4 +117,14 @@ export default {
   }
 }
 
+.slide-fade-enter-active {
+  transition: all .4s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>
