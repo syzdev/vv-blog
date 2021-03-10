@@ -1,41 +1,32 @@
 <template>
   <el-container style="height: 100vh">
-    <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <el-menu router unique-opened :default-active="$route.path">
+    <el-aside :width="isCollapse ? '65px' : '200px'" style="background-color: rgb(238, 241, 246)">
+      <el-menu router unique-opened :default-active="$route.path" :collapse="isCollapse" :collapse-transition="false">
         <el-submenu index="1">
-          <template slot="title"
-            ><i class="el-icon-message"></i>内容管理</template
-          >
-          <el-menu-item-group>
-            <template slot="title">分类</template>
-            <el-menu-item index="/category/create">新建分类</el-menu-item>
-            <el-menu-item index="/category/list">分类列表</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <template slot="title">文章</template>
-            <el-menu-item index="/article/create">新建文章</el-menu-item>
-            <el-menu-item index="/article/list">文章列表</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group>
-            <template slot="title">头像</template>
-            <el-menu-item index="/avatar/create">头像上传</el-menu-item>
-          </el-menu-item-group>
+          <template slot="title" ><i class="el-icon-folder-opened"></i><span>分类管理</span></template>
+          <el-menu-item index="/category/create">新建分类</el-menu-item>
+          <el-menu-item index="/category/list">分类列表</el-menu-item>
         </el-submenu>
         <el-submenu index="2">
-          <template slot="title"><i class="el-icon-user"></i>账号管理</template>
-          <el-menu-item-group>
-            <template slot="title">账号</template>
-            <el-menu-item index="/admin/create">新建账号</el-menu-item>
-            <el-menu-item index="/admin/list">账号列表</el-menu-item>
-          </el-menu-item-group>
+          <template slot="title"><i class="el-icon-document"></i><span>文章管理</span></template>
+          <el-menu-item index="/article/create">新建文章</el-menu-item>
+          <el-menu-item index="/article/list">文章列表</el-menu-item>
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title"><i class="el-icon-picture-outline-round"></i><span>头像管理</span></template>
+            <el-menu-item index="/avatar/create">头像上传</el-menu-item>
+        </el-submenu>
+        <el-submenu index="4">
+          <template slot="title"><i class="el-icon-user"></i><span>账号管理</span></template>
+          <el-menu-item index="/admin/create">新建账号</el-menu-item>
+          <el-menu-item index="/admin/list">账号列表</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-aside>
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <!-- <i class="el-icon-setting" style="margin-right: 15px"></i> -->
-        <!-- <span>王小虎</span> -->
+        <el-button type="primary" @click="collapseMenu">菜单</el-button>
         <el-dropdown trigger="click">
           <span class="el-dropdown-link">
             <el-avatar shape="square" :size="40" :src="avatar" style="vertical-align: middle;"></el-avatar>
@@ -49,7 +40,9 @@
       </el-header>
 
       <el-main>
-        <router-view :key="$route.path"></router-view>
+        <transition name="slide-fade">
+          <router-view :key="$route.path"></router-view>
+        </transition>
       </el-main>
     </el-container>
   </el-container>
@@ -60,7 +53,8 @@ export default {
   data() {
     return {
       username: '',
-      avatar: ''
+      avatar: '',
+      isCollapse: false,
     }
   },
   methods: {
@@ -72,6 +66,9 @@ export default {
     loadUserInfo() {
       this.username = localStorage.getItem('username') || sessionStorage.getItem('username')
       this.avatar = localStorage.getItem('avatar') || sessionStorage.getItem('avatar')
+    },
+    collapseMenu() {
+      this.isCollapse = !this.isCollapse
     }
   },
   created() {
@@ -82,12 +79,32 @@ export default {
 
 <style>
 .el-header {
-  background-color: #b3c0d1;
+  background-color: #fff;
   color: #333;
   line-height: 60px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
 }
-
 .el-aside {
   color: #333;
 }
+
+.slide-fade-enter{
+ transform:translateX(-1%);
+ opacity: 0;
+}
+.slide-fade-enter-active{
+ transition: 0.25s;
+}
+.slide-fade-enter-to{
+ opacity: 0.7;
+}
+.slide-fade-leave{
+ opacity: 0;
+}
+.slide-fade-leave-to{
+ opacity:0;
+}
+
 </style>

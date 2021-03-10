@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <el-card class="login-card" header="请先登录">
+  <div class="login-page">
+    <el-card class="login-card" header="系统登录" body-style="{padding:'80px'}">
       <!-- 原生提交方式并阻止跳转页面 -->
-      <el-form @submit.native.prevent="login" label-width="60px">
-        <el-form-item label="用户名">
-          <el-input v-model="model.username"></el-input>
+      <el-form @submit.native.prevent="login" >
+        <el-form-item>
+          <el-input v-model="model.username" prefix-icon="el-icon-user" placeholder="请输入账号"></el-input>
         </el-form-item>
-        <el-form-item label="密码">
-          <el-input show-password v-model="model.password"></el-input>
+        <el-form-item>
+          <el-input show-password v-model="model.password" prefix-icon="el-icon-lock" placeholder="请输入密码"></el-input>
         </el-form-item>
         <el-form-item>
           <el-checkbox v-model="loginOption">记住登录状态</el-checkbox>
@@ -53,12 +53,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.login-page {
+  background: #2D3A4B;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
 .login-card {
   width: 25rem;
   margin: 15rem auto;
 }
 .login-button {
-  margin-left: 60px;
+  margin-left: 40px;
 }
 </style>
