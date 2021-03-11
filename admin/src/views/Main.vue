@@ -26,7 +26,10 @@
 
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
-        <el-button type="primary" @click="collapseMenu">菜单</el-button>
+        <!-- <el-button type="primary" @click="collapseMenu">菜单</el-button> -->
+        <div class="toggle-button" @click="collapseMenu">
+          <i :class="isCollapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'"></i>
+        </div>
         <el-dropdown trigger="click">
           <span class="el-dropdown-link">
             <el-avatar shape="square" :size="40" :src="avatar" style="vertical-align: middle;"></el-avatar>
@@ -90,6 +93,13 @@ export default {
   color: #333;
 }
 
+/* 菜单切换按钮样式 */
+.toggle-button {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* 页面切换淡出特效 */
 .slide-fade-enter{
  transform:translateX(-1%);
  opacity: 0;
