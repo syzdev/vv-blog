@@ -4,6 +4,8 @@
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
       <el-table-column prop="title" label="文章标题"></el-table-column>
+      <el-table-column prop="createdAt" label="创建时间" :formatter="timeFormatCreated"></el-table-column>
+      <el-table-column prop="updatedAt" label="最后修改时间" :formatter="timeFormatUpdated"></el-table-column>
       <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button
@@ -23,6 +25,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 export default {
   data() {
     return {
@@ -30,6 +33,12 @@ export default {
     }
   },
   methods: {
+    timeFormatCreated(row) {
+      return dayjs(row.createdAt).format("YYYY-MM-DD HH:mm:ss")
+    },
+    timeFormatUpdated(row) {
+      return dayjs(row.updatedAt).format("YYYY-MM-DD HH:mm:ss")
+    },
     async fetch() {
       const res = await this.$http.get('rest/article')
       this.items = res.data
