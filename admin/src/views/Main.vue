@@ -32,11 +32,12 @@
         </div>
         <el-dropdown trigger="click">
           <span class="el-dropdown-link">
-            <el-avatar shape="square" :size="40" :src="avatar" style="vertical-align: middle;"></el-avatar>
+            <el-avatar shape="square" :size="30" :src="avatar" style="vertical-align: middle;"></el-avatar>
             {{username}}
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item icon="el-icon-rank" @click.native="clickFullscreen">全屏显示</el-dropdown-item>
             <el-dropdown-item icon="el-icon-switch-button" @click.native="loginOut">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -52,12 +53,14 @@
 </template>
 
 <script>
+import screenfull from 'screenfull'
 export default {
   data() {
     return {
       username: '',
       avatar: '',
       isCollapse: false,
+      isFullscreen: false,
     }
   },
   methods: {
@@ -72,6 +75,16 @@ export default {
     },
     collapseMenu() {
       this.isCollapse = !this.isCollapse
+    },
+    clickFullscreen(){
+      if (!screenfull.isEnabled) {
+        this.$message({
+          message: '您的浏览器不支持全屏显示！',
+          type: 'warning'
+        })
+        return false
+      }
+      screenfull.toggle()
     }
   },
   created() {
