@@ -7,6 +7,11 @@ Vue.prototype.$http = http
 
 Vue.config.productionTip = false
 
+// mavonEditor
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
+
 new Vue({
   router,
   render: h => h(App)

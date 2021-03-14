@@ -14,5 +14,10 @@ module.exports = app => {
     res.send(model)
   })
 
+  router.get('/article/:id', async (req, res) => {
+    const model = await Article.findById(req.params.id)
+    res.send(model)
+  })
+
   app.use('/web/api', router)
 }

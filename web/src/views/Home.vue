@@ -1,23 +1,11 @@
 <template>
   <div class="container">
-    <div class="header">
-      <div class="header-title">
-        <router-link to="/about">syzdev's Blog</router-link>
-      </div>
-      <div class="header-menu">
-        <ul>
-          <li><router-link to="/">首页</router-link></li>
-          <li><router-link to="/">分类</router-link></li>
-          <li><router-link to="/">关于</router-link></li>
-        </ul>
-      </div>
-    </div>
     <div class="content">
       <transition-group name="slide-fade" tag="div">
         <div class="article-card" v-for="item in items" :key="item._id">
           <div class="articel-title">
             <div class="article-category" v-for="category in item.category" :key="category._id">[{{category.name}}]</div>
-            {{item.title}}
+            <router-link :to="`/article/${item._id}`" >{{item.title}}</router-link>
           </div>
           <div class="article-desc">{{item.body}}</div>
           <div class="article-detail">posted @ {{item.updatedAt|timeFormat}}</div>
