@@ -9,6 +9,10 @@
   margin: 0;
   padding: 0;
 }
+/* 避免滚动条造成页面闪烁 */
+body {
+  overflow-y: scroll; 
+}
 /*包含以下四种的链接*/
 a {
   text-decoration: none;

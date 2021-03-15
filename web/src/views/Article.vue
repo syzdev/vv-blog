@@ -1,5 +1,6 @@
 <template>
   <div v-if="model">
+    <div class="title">{{model.title}}</div>
     <mavon-editor
       :value="model.body"
       :subfield="false"
@@ -34,4 +35,10 @@ export default {
 </script>
 
 <style>
+.title {
+  line-height: 40px;
+  font-size: 30px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
 </style>
