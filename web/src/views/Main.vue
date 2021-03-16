@@ -34,6 +34,7 @@ export default {}
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+  background: #fff;
   .header {
     display: flex;
     height: 60px;
@@ -42,7 +43,7 @@ export default {}
     margin-bottom: 20px;
     .header-title {
       @include flex-center;
-      font-size: 25px;
+      font-size: 30px;
       font-weight: bold;
     }
     .header-menu {

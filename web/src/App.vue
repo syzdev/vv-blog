@@ -11,7 +11,8 @@
 }
 /* 避免滚动条造成页面闪烁 */
 body {
-  overflow-y: scroll; 
+  overflow-y: scroll;
+  background-color: #eee;
 }
 /*包含以下四种的链接*/
 a {

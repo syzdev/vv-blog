@@ -15,7 +15,7 @@ module.exports = app => {
   })
 
   router.get('/article/:id', async (req, res) => {
-    const model = await Article.findById(req.params.id)
+    const model = await Article.findById(req.params.id).populate('category').limit(10)
     res.send(model)
   })
 

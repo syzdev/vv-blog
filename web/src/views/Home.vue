@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import dayjs from 'dayjs'
 export default {
   data() {
     return {
@@ -30,11 +29,6 @@ export default {
   },
   created() {
     this.fetch()
-  },
-  filters: {
-    timeFormat(value, format = 'YYYY-MM-DD HH:mm:ss') {
-      return dayjs(value).format(format)
-    },
   },
 }
 </script>
