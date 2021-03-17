@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view />
+    <el-backtop><i class="el-icon-arrow-up"></i></el-backtop>
   </div>
 </template>
 
@@ -12,26 +13,28 @@
 /* 避免滚动条造成页面闪烁 */
 body {
   overflow-y: scroll;
-  background-color: #eee;
+  /* background-color: #eee; */
+  background: url('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1640747396,1326062358&fm=26&gp=0.jpg');
 }
-/*包含以下四种的链接*/
+/*包含以下四种链接*/
 a {
   text-decoration: none;
 }
 /*正常的未被访问过的链接*/
 a:link {
-  text-decoration: none;
+  color: #409EFF;
 }
 /*已经访问过的链接*/
 a:visited {
-  text-decoration: none;
+  color: #409EFF;
 }
 /*鼠标划过(停留)的链接*/
 a:hover {
-  text-decoration: none;
+  color: pink;
+  transition: all .3s
 }
 /* 正在点击的链接*/
 a:active {
-  text-decoration: none;
+  color: pink;
 }
 </style>

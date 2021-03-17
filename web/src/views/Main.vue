@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header">
       <div class="header-title">
-        <router-link to="/">syzdev's Blog</router-link>
+        <router-link to="/">vv-blog</router-link>
       </div>
       <div class="header-menu">
         <ul>

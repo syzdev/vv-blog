@@ -12,6 +12,8 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
+import './plugins/element.js'
+
 // 时间格式过滤
 import dayjs from 'dayjs'
 Vue.filter('timeFormat', (value, format = 'YYYY-MM-DD HH:mm:ss') => {
