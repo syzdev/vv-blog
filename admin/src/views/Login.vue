@@ -25,9 +25,10 @@
         </el-form-item>
         <el-form-item>
           <el-checkbox v-model="loginOption">记住登录状态</el-checkbox>
-          <el-button class="login-button" type="primary" native-type="submit"
-            >登录</el-button
-          >
+          <div class="login-button">
+            <el-button type="primary" native-type="submit">登录</el-button>
+            <el-button type="danger" @click="resetLoginForm">重置</el-button>
+          </div>
         </el-form-item>
       </el-form>
     </el-card>
@@ -66,6 +67,10 @@ export default {
     }
   },
   methods: {
+    resetLoginForm() {
+      // 点击重置按钮，重置表单的内容
+      this.$refs.loginFormRef.resetFields()
+    },
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
         // 验证未通过，直接返回
@@ -97,18 +102,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .login-page {
   background: #2d3a4b;
   height: 100%;
   position: fixed;
   width: 100%;
-}
-.login-card {
-  width: 25rem;
-  margin: 15rem auto;
-}
-.login-button {
-  margin-left: 40px;
+  .login-card {
+    width: 25rem;
+    margin: 15rem auto;
+    .login-button {
+      display: flex;
+      margin-top: 25px;
+      justify-content: space-evenly;
+    }
+  }
 }
 </style>
