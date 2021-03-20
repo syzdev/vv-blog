@@ -2,24 +2,28 @@
   <el-container style="height: 100vh">
     <el-aside :width="isCollapse ? '65px' : '200px'" style="background-color: rgb(238, 241, 246)">
       <el-menu router unique-opened :default-active="$route.path" :collapse="isCollapse" :collapse-transition="false">
-        <el-submenu index="1">
+        <el-submenu index="1" data-step="1" data-intro="分类管理" data-position="right">
           <template slot="title" ><i class="el-icon-folder-opened"></i><span>分类管理</span></template>
           <el-menu-item index="/category/create">新建分类</el-menu-item>
           <el-menu-item index="/category/list">分类列表</el-menu-item>
         </el-submenu>
-        <el-submenu index="2">
+        <el-submenu index="2" data-step="2" data-intro="文章管理" data-position="right">
           <template slot="title"><i class="el-icon-document"></i><span>文章管理</span></template>
           <el-menu-item index="/article/create">新建文章</el-menu-item>
           <el-menu-item index="/article/list">文章列表</el-menu-item>
         </el-submenu>
-        <el-submenu index="3">
+        <el-submenu index="3" data-step="3" data-intro="头像管理" data-position="right">
           <template slot="title"><i class="el-icon-picture-outline-round"></i><span>头像管理</span></template>
             <el-menu-item index="/avatar/create">头像上传</el-menu-item>
         </el-submenu>
-        <el-submenu index="4">
+        <el-submenu index="4" data-step="4" data-intro="账号管理" data-position="right">
           <template slot="title"><i class="el-icon-user"></i><span>账号管理</span></template>
           <el-menu-item index="/admin/create">新建账号</el-menu-item>
           <el-menu-item index="/admin/list">账号列表</el-menu-item>
+        </el-submenu>
+        <el-submenu index="5" data-step="5" data-intro="其他功能" data-position="right">
+          <template slot="title"><i class="el-icon-collection"></i><span>其他内容</span></template>
+          <el-menu-item @click="guide">新手引导</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-aside>
@@ -27,10 +31,10 @@
     <el-container>
       <el-header style="text-align: right; font-size: 12px">
         <!-- <el-button type="primary" @click="collapseMenu">菜单</el-button> -->
-        <div class="toggle-button" @click="collapseMenu">
+        <div class="toggle-button" @click="collapseMenu" data-step="6" data-intro="折叠和展开菜单" data-position="right">
           <i :class="isCollapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'"></i>
         </div>
-        <el-dropdown trigger="click">
+        <el-dropdown trigger="click" data-step="7" data-intro="全屏显示和退出登录" data-position="left">
           <span class="el-dropdown-link">
             <el-avatar shape="square" :size="30" :src="avatar" style="vertical-align: middle;"></el-avatar>
             {{username}}
@@ -54,6 +58,8 @@
 
 <script>
 import screenfull from 'screenfull'
+import introJs from 'intro.js'
+import 'intro.js/introjs.css'
 export default {
   data() {
     return {
@@ -64,6 +70,18 @@ export default {
     }
   },
   methods: {
+    guide() {
+      introJs().setOptions({
+          prevLabel: "上一步",
+          nextLabel: "下一步",
+          skipLabel: "跳过",
+          doneLabel: "结束",
+      }).oncomplete(function () {
+          //点击跳过按钮后执行的事件
+      }).onexit(function () {
+          //点击结束按钮后， 执行的事件
+      }).start()
+    },
     loginOut() {
       localStorage.clear()
       sessionStorage.clear()
