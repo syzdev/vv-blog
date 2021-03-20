@@ -19,7 +19,7 @@ module.exports = app => {
   })
   // 通用获取数据接口
   router.get('/', async (req, res) => {
-    const items = await req.Model.find().limit(10)
+    const items = await req.Model.find()
     res.send(items)
   })
   // 通用按ID查询接口
@@ -33,6 +33,16 @@ module.exports = app => {
     res.send({
       success: true
     })
+  })
+
+  // 通用分页获取数据接口
+  router.get('/:page/:size', async (req, res) => {
+    // 将传过来的字符串转换为数字，否则报错'skip' field must be numeric.
+    const page = parseInt(req.params.page)
+    const size = parseInt(req.params.size)
+    const items = await req.Model.find().skip(((page-1)*size)).limit(size)
+    // const total = await req.Model.find().count()
+    res.send(items)
   })
 
   const authMiddleware = require('../middleware/auth')
