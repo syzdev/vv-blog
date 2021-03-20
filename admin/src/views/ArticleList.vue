@@ -42,6 +42,7 @@
       :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
+      background
     >
     </el-pagination>
   </div>
@@ -109,4 +110,8 @@ export default {
 </script>
 
 <style>
+.el-pagination {
+  text-align: center;
+  margin-top: 20px;
+}
 </style>
