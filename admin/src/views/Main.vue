@@ -1,7 +1,7 @@
 <template>
   <el-container style="height: 100vh">
     <el-aside :width="isCollapse ? '65px' : '200px'" style="background-color: rgb(238, 241, 246)">
-      <el-menu router unique-opened :default-active="$route.path" :collapse="isCollapse" :collapse-transition="false">
+      <el-menu router unique-opened :default-active="redirectRoutePath" :collapse="isCollapse" :collapse-transition="false">
         <el-submenu index="1" data-step="1" data-intro="分类管理" data-position="right">
           <template slot="title" ><i class="el-icon-folder-opened"></i><span>分类管理</span></template>
           <el-menu-item index="/category/create">新建分类</el-menu-item>
@@ -32,7 +32,7 @@
       <el-header style="text-align: right; font-size: 12px">
         <!-- <el-button type="primary" @click="collapseMenu">菜单</el-button> -->
         <div class="toggle-button" @click="collapseMenu" data-step="6" data-intro="折叠和展开菜单" data-position="right">
-          <i :class="isCollapse ? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'"></i>
+          <i :class="isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"></i>
         </div>
         <el-dropdown trigger="click" data-step="7" data-intro="全屏显示和退出登录" data-position="left">
           <span class="el-dropdown-link">
@@ -67,6 +67,14 @@ export default {
       avatar: '',
       isCollapse: false,
       isFullscreen: false,
+    }
+  },
+  computed: {
+    redirectRoutePath() {
+      const rootRoutePath = this.$route.path.split("/")[1]
+      // 将编辑页面路由定向到列表页
+      const nodeRoutePath = this.$route.path.split("/")[2] === 'edit' ? 'list' : this.$route.path.split("/")[2]
+      return '/'+ rootRoutePath + '/' + nodeRoutePath
     }
   },
   methods: {
@@ -126,7 +134,7 @@ export default {
 
 /* 菜单切换按钮样式 */
 .toggle-button {
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
 }
 

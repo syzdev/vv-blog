@@ -28,6 +28,7 @@ import {
   Avatar,
   checkbox,
   Pagination,
+  PageHeader,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -54,6 +55,7 @@ Vue.use(Card)
 Vue.use(Avatar)
 Vue.use(checkbox)
 Vue.use(Pagination)
+Vue.use(PageHeader)
 
 Vue.prototype.$message = Message
 Vue.prototype.$msgbox = MessageBox

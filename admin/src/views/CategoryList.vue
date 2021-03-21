@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>分类列表</h1>
+    <!-- <el-page-header @back="goBack" content="分类列表"></el-page-header> -->
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="300"> </el-table-column>
       <el-table-column prop="name" label="分类名称"> </el-table-column>
@@ -49,6 +49,10 @@ export default {
     }
   },
   methods: {
+    // 路由回退
+    // goBack() {
+    //   this.$router.go(-1)
+    // },
     // 监听每页数据个数的改变
     handleSizeChange(paramPageSize) {
       this.pageSize = paramPageSize
@@ -92,5 +96,8 @@ export default {
 .el-pagination {
   text-align: center;
   margin-top: 20px;
+}
+.el-table {
+  margin-top: 30px;
 }
 </style>
