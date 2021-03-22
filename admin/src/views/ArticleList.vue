@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>文章列表</h1>
+    <el-page-header @back="goBack" content="文章列表"></el-page-header>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
       <el-table-column prop="title" label="文章标题"></el-table-column>
@@ -60,6 +60,9 @@ export default {
     }
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     // 监听每页数据个数的改变
     handleSizeChange(paramPageSize) {
       this.pageSize = paramPageSize

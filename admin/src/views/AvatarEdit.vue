@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>上传头像</h1>
+    <el-page-header @back="goBack" content="上传头像"></el-page-header>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-form-item>
         <el-upload
@@ -29,6 +29,9 @@ export default {
     }
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     handleAvatarSuccess(res) {
       this.$set(this.model, 'avatar', res.url)
       // this.model.avatar = res.url

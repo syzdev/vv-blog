@@ -1,7 +1,9 @@
 <template>
   <div class="about">
-    <h1 v-if="id">编辑文章</h1>
-    <h1 v-else>新建文章</h1>
+    <el-page-header
+      @back="goBack"
+      :content="id ? '编辑文章' : '新建文章'"
+    ></el-page-header>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-form-item label="所属分类">
         <el-select v-model="model.category" multiple>
@@ -33,6 +35,9 @@ export default {
     }
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     async save() {
       if (this.id) {
         await this.$http.put(`rest/article/${this.id}`, this.model)

@@ -1,7 +1,9 @@
 <template>
   <div class="about">
-    <h1 v-if="id">编辑账号</h1>
-    <h1 v-else>新建账号</h1>
+    <el-page-header
+      @back="goBack"
+      :content="id ? '编辑账号' : '新建账号'"
+    ></el-page-header>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-form-item label="名称">
         <el-input v-model="model.username"></el-input>
@@ -39,6 +41,9 @@ export default {
     }
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     async save() {
       if (this.id) {
         await this.$http.put(`rest/admin/${this.id}`, this.model)
