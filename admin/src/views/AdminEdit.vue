@@ -4,6 +4,7 @@
       @back="goBack"
       :content="id ? '编辑账号' : '新建账号'"
     ></el-page-header>
+    <el-divider></el-divider>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-form-item label="名称">
         <el-input v-model="model.username"></el-input>

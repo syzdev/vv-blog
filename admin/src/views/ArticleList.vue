@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-page-header @back="goBack" content="文章列表"></el-page-header>
+    <el-divider></el-divider>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
       <el-table-column prop="title" label="文章标题"></el-table-column>

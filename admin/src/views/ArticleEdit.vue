@@ -4,6 +4,7 @@
       @back="goBack"
       :content="id ? '编辑文章' : '新建文章'"
     ></el-page-header>
+    <el-divider></el-divider>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-form-item label="所属分类">
         <el-select v-model="model.category" multiple>
