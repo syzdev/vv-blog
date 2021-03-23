@@ -2,7 +2,6 @@
   <el-container style="height: 100vh">
     <el-aside
       :width="isCollapse ? '65px' : '200px'"
-      style="background-color: rgb(238, 241, 246)"
     >
       <el-menu
         router
@@ -10,6 +9,8 @@
         :default-active="redirectRoutePath"
         :collapse="isCollapse"
         :collapse-transition="false"
+        background-color="#304156"
+        text-color="#ddd"
       >
         <el-submenu
           index="1"
@@ -198,7 +199,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .el-header {
   background-color: #fff;
   color: #333;
@@ -206,15 +207,20 @@ export default {
   border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
-}
-.el-aside {
-  color: #333;
+  .toggle-button {
+    font-size: 22px;
+    cursor: pointer;
+  }
 }
 
-/* 菜单切换按钮样式 */
-.toggle-button {
-  font-size: 22px;
-  cursor: pointer;
+.el-aside {
+  background-color: #304156;
+  .el-menu {
+    border-right: none;
+    .el-submenu i {
+      color: #ddd;
+    }
+  }
 }
 
 /* 页面切换淡出特效 */
