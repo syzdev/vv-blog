@@ -23,7 +23,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="标题" prop="title">
-        <el-input v-model="model.title"></el-input>
+        <el-input v-model="model.title" placeholder="请输入文章标题"></el-input>
       </el-form-item>
       <el-form-item label="详情" prop="body">
         <mavon-editor v-model="model.body" />

@@ -12,11 +12,11 @@
       :rules="adminFormRules"
       :model="model"
     >
-      <el-form-item label="名称" prop="username">
-        <el-input v-model="model.username"></el-input>
+      <el-form-item label="用户名" prop="username">
+        <el-input v-model="model.username" placeholder="请输入用户名"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input type="password" v-model="model.password"></el-input>
+        <el-input type="password" v-model="model.password" placeholder="请输入密码"></el-input>
       </el-form-item>
       <el-form-item>
         <el-upload

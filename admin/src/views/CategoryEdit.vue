@@ -13,7 +13,7 @@
       :model="model"
     >
       <el-form-item label="名称" prop="name">
-        <el-input v-model="model.name"></el-input>
+        <el-input v-model="model.name" placeholder="请输入分类名称"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
