@@ -5,11 +5,17 @@
       :content="id ? '编辑账号' : '新建账号'"
     ></el-page-header>
     <el-divider></el-divider>
-    <el-form label-width="80px" @submit.native.prevent="save">
-      <el-form-item label="名称">
+    <el-form
+      label-width="80px"
+      @submit.native.prevent="save"
+      ref="adminFormRef"
+      :rules="adminFormRules"
+      :model="model"
+    >
+      <el-form-item label="名称" prop="username">
         <el-input v-model="model.username"></el-input>
       </el-form-item>
-      <el-form-item label="密码">
+      <el-form-item label="密码" prop="password">
         <el-input type="password" v-model="model.password"></el-input>
       </el-form-item>
       <el-form-item>
@@ -39,6 +45,26 @@ export default {
   data() {
     return {
       model: {},
+      adminFormRules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          {
+            min: 3,
+            max: 10,
+            message: '长度在 3 到 10 个字符',
+            trigger: 'blur',
+          },
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          {
+            min: 5,
+            max: 15,
+            message: '长度在 5 到 15 个字符',
+            trigger: 'blur',
+          },
+        ],
+      },
     }
   },
   methods: {
