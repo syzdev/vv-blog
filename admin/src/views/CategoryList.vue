@@ -3,6 +3,7 @@
     <el-page-header @back="goBack" content="分类列表"></el-page-header>
     <el-divider></el-divider>
     <el-table :data="items">
+      <el-table-column type="index" label="#" width="60"></el-table-column>
       <el-table-column prop="_id" label="ID" width="300"> </el-table-column>
       <el-table-column prop="name" label="分类名称"> </el-table-column>
       <el-table-column fixed="right" label="操作" width="200">

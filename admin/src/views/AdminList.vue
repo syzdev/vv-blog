@@ -3,6 +3,7 @@
     <el-page-header @back="goBack" content="账号列表"></el-page-header>
     <el-divider></el-divider>
     <el-table :data="items">
+      <el-table-column type="index" label="#" width="60"></el-table-column>
       <el-table-column prop="_id" label="ID" width="300"> </el-table-column>
       <el-table-column prop="username" label="用户名"> </el-table-column>
       <el-table-column prop="avatar" label="头像">
