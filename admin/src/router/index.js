@@ -1,5 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// nprogress
+import nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
+nprogress.configure({
+  easing: 'ease', // 动画方式
+  speed: 500, // 进度条的速度
+  showSpinner: false, // 不显示右上角加载图标
+  trickleSpeed: 200, // 自动递增间隔
+  minimum: 0.3 // 初始化时的最小百分比
+})
 
 Vue.use(VueRouter)
 
@@ -71,10 +81,15 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
+  nprogress.start()
   if (!to.meta.ignoreAuth && (!localStorage.token && !sessionStorage.token)) {
     return next('/login')
   }
   next()
+})
+
+router.afterEach(() => {
+  nprogress.done()
 })
 
 export default router
