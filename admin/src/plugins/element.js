@@ -30,6 +30,8 @@ import {
   Pagination,
   PageHeader,
   Divider,
+  Tabs,
+  TabPane,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -58,6 +60,8 @@ Vue.use(checkbox)
 Vue.use(Pagination)
 Vue.use(PageHeader)
 Vue.use(Divider)
+Vue.use(Tabs)
+Vue.use(TabPane)
 
 Vue.prototype.$message = Message
 Vue.prototype.$msgbox = MessageBox

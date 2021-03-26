@@ -6,7 +6,8 @@ const schema = new mongoose.Schema({
     ref: 'Category'
   }],
   title: { type: String },
-  body: { type: String }
+  body: { type: String },
+  format: { type: String },
 }, {
   // 添加时间戳，包含createAt和updateAt
   timestamps: true

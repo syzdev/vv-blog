@@ -72,15 +72,21 @@ export default {
       this.$router.go(-1)
     },
     async save() {
-      if (this.id) {
-        await this.$http.put(`rest/admin/${this.id}`, this.model)
-      } else {
-        await this.$http.post('rest/admin', this.model)
-      }
-      this.$router.push('/admin/list')
-      this.$message({
-        type: 'success',
-        message: '保存成功！',
+      this.$refs.adminFormRef.validate(async (valid) => {
+        // 验证未通过，直接返回
+        if (!valid) {
+          return
+        }
+        if (this.id) {
+          await this.$http.put(`rest/admin/${this.id}`, this.model)
+        } else {
+          await this.$http.post('rest/admin', this.model)
+        }
+        this.$router.push('/admin/list')
+        this.$message({
+          type: 'success',
+          message: '保存成功！',
+        })
       })
     },
     async fetch() {

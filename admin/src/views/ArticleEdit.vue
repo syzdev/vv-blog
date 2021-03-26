@@ -25,8 +25,11 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model="model.title" placeholder="请输入文章标题"></el-input>
       </el-form-item>
-      <el-form-item label="详情" prop="body">
-        <mavon-editor v-model="model.body" />
+      <el-form-item label="内容">
+        <el-tabs type="border-card" v-model="model.format">
+          <el-tab-pane label="Markdown编辑器" name="md"><mavon-editor v-model="model.body"/></el-tab-pane>
+          <el-tab-pane label="富文本编辑器" name="doc"><vue-editor v-model="tempModelBody"/></el-tab-pane>
+        </el-tabs>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -36,14 +39,21 @@
 </template>
 
 <script>
+import { VueEditor } from "vue2-editor"
 export default {
   props: {
     id: {},
   },
+  components: {
+    VueEditor,
+  },
   data() {
     return {
-      model: {},
-      category: [],
+      tempModelBody:'', // 富文本编辑器内容，model.body默认保存markdown编辑器内容
+      model: {
+        format: "md", // 编辑器类型默认为markdown
+      },
+      category: [], // 下拉框选择文本类型
       articleFormRules: {
         category: [
           { required: true, message: '请选择所属分类', trigger: 'blur' },
@@ -57,7 +67,6 @@ export default {
             trigger: 'blur',
           },
         ],
-        body: [{ required: true, message: '请输入文章内容', trigger: 'blur' }],
       },
     }
   },
@@ -66,10 +75,14 @@ export default {
       this.$router.go(-1)
     },
     async save() {
-      this.$refs.loginFormRef.validate(async (valid) => {
+      this.$refs.articleFormRef.validate(async (valid) => {
         // 验证未通过，直接返回
         if (!valid) {
           return
+        }
+        // 编辑器类型默认为markdown，若是富文本类型，则要修改为富文本编辑器中的内容
+        if (this.model.format == "doc") {
+          this.model.body = this.tempModelBody
         }
         if (this.id) {
           await this.$http.put(`rest/article/${this.id}`, this.model)
@@ -86,6 +99,11 @@ export default {
     async fetch() {
       const res = await this.$http.get(`rest/article/${this.id}`)
       this.model = res.data
+      // 获取到的文章是富文本内容，修改成富文本编辑器的data
+      if (this.model.format == "doc") {
+        this.tempModelBody = this.model.body
+        this.model.body = ""
+      }
     },
     async fetchCategory() {
       const res = await this.$http.get(`rest/category`)
