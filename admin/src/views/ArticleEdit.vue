@@ -27,7 +27,7 @@
       </el-form-item>
       <el-form-item label="内容">
         <el-tabs type="border-card" v-model="model.format">
-          <el-tab-pane label="Markdown编辑器" name="md"><mavon-editor v-model="model.body"/></el-tab-pane>
+          <el-tab-pane label="Markdown编辑器" name="md"><mavon-editor ref="md" @imgAdd="$imgAdd" v-model="model.body"/></el-tab-pane>
           <el-tab-pane label="富文本编辑器" name="doc"><vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="tempModelBody"/></el-tab-pane>
         </el-tabs>
       </el-form-item>
@@ -71,6 +71,13 @@ export default {
     }
   },
   methods: {
+    // 处理Markdown编辑器自定义图片上传
+    async $imgAdd(pos, $file){
+      const formData = new FormData()
+      formData.append('file', $file)
+      const res = await this.$http.post('upload', formData)
+      this.$refs.md.$img2Url(pos, res.data.url)
+    },
     // 处理富文本编辑器自定义图片上传
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
       const formData = new FormData()
