@@ -211,6 +211,9 @@ export default {
     font-size: 22px;
     cursor: pointer;
   }
+  .el-dropdown {
+    cursor: pointer;
+  }
 }
 
 .el-aside {
