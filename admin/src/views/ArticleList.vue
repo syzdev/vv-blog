@@ -2,7 +2,7 @@
   <div>
     <el-page-header @back="goBack" content="文章列表"></el-page-header>
     <el-divider></el-divider>
-    <el-table :data="items" >
+    <el-table :data="items" border>
       <el-table-column type="index" label="#" width="60"></el-table-column>
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
       <el-table-column prop="title" label="文章标题"></el-table-column>
@@ -115,9 +115,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .el-pagination {
   text-align: center;
   margin-top: 20px;
+}
+.el-table {
+  border-radius: 2px;
+  box-shadow:
+    0 0.3px 2.2px rgba(0, 0, 0, 0.001),
+    0 0.7px 5.3px rgba(0, 0, 0, 0.003),
+    0 1.3px 10px rgba(0, 0, 0, 0.005),
+    0 2.2px 17.9px rgba(0, 0, 0, 0.008),
+    0 4.2px 33.4px rgba(0, 0, 0, 0.014),
+    0 10px 80px rgba(0, 0, 0, 0.07);
 }
 </style>

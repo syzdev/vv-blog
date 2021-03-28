@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div>
     <el-page-header
       @back="goBack"
       :content="id ? '编辑文章' : '新建文章'"
@@ -13,7 +13,7 @@
       :model="model"
     >
       <el-form-item label="所属分类" prop="category">
-        <el-select v-model="model.category" multiple>
+        <el-select v-model="model.category" multiple placeholder="请选择分类（可多选）">
           <el-option
             v-for="item in category"
             :key="item._id"
@@ -131,3 +131,13 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.el-form {
+  .el-form-item {
+    .el-select {
+      width: 100%;
+    }
+  }
+}
+</style>
