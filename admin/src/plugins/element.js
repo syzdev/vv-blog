@@ -32,6 +32,7 @@ import {
   Divider,
   Tabs,
   TabPane,
+  Drawer,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -62,6 +63,7 @@ Vue.use(PageHeader)
 Vue.use(Divider)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Drawer)
 
 Vue.prototype.$message = Message
 Vue.prototype.$msgbox = MessageBox

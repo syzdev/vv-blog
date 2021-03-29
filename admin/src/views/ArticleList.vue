@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <el-page-header @back="goBack" content="文章列表"></el-page-header>
     <el-divider></el-divider>
+    <!-- 表格内容部分 -->
     <el-table :data="items" border>
       <el-table-column type="index" label="#" width="60"></el-table-column>
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
@@ -17,8 +18,15 @@
         :formatter="timeFormatUpdated"
         sortable
       ></el-table-column>
-      <el-table-column fixed="right" label="操作" width="200">
+      <el-table-column fixed="right" label="操作" width="260">
         <template slot-scope="scope">
+          <el-button
+            icon="el-icon-camera"
+            type="warning"
+            size="small"
+            @click="handleArticlePreview(scope.row._id)"
+            >预览</el-button
+          >
           <el-button
             icon="el-icon-edit"
             type="primary"
@@ -36,7 +44,7 @@
         </template>
       </el-table-column>
     </el-table>
-
+    <!-- 分页部分 -->
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -48,6 +56,28 @@
       background
     >
     </el-pagination>
+    <!-- 文章预览 -->
+    <el-drawer
+      title="title"
+      direction="ltr"
+      show-close
+      size="898px"
+      :visible.sync="drawer"
+      >
+      <template slot="title" >
+        <span style="font-size: 20px;">{{articlePreviewModel.title}}</span>
+      </template>
+      <mavon-editor
+        :value="articlePreviewModel.body"
+        :subfield="false"
+        defaultOpen="preview"
+        :toolbarsFlag="false"
+        :editable="false"
+        :scrollStyle="true"
+        :ishljs="true"
+        :boxShadow="false"
+      />
+    </el-drawer>
   </div>
 </template>
 
@@ -60,9 +90,18 @@ export default {
       currentPage: 1, // 当前页码
       pageSize: 5, // 每页显示的数据个数
       total: 0, // 总数据个数
+      drawer: false, // 文章预览drawer
+      articlePreviewModel: {}, // 保存文章预览的model
     }
   },
   methods: {
+    async handleArticlePreview(id) {
+      // 打开drawer
+      this.drawer = true
+      // 请求文章内容
+      const res = await this.$http.get(`rest/article/${id}`)
+      this.articlePreviewModel = res.data
+    },
     goBack() {
       this.$router.go(-1)
     },
@@ -115,19 +154,44 @@ export default {
 }
 </script>
 
-<style scoped>
-.el-pagination {
-  text-align: center;
-  margin-top: 20px;
-}
-.el-table {
-  border-radius: 2px;
-  box-shadow:
-    0 0.3px 2.2px rgba(0, 0, 0, 0.001),
-    0 0.7px 5.3px rgba(0, 0, 0, 0.003),
-    0 1.3px 10px rgba(0, 0, 0, 0.005),
-    0 2.2px 17.9px rgba(0, 0, 0, 0.008),
-    0 4.2px 33.4px rgba(0, 0, 0, 0.014),
-    0 10px 80px rgba(0, 0, 0, 0.07);
+<style lang="scss" scoped>
+.container {
+  .el-pagination {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .el-table {
+    border-radius: 2px;
+    box-shadow:
+      0 0.3px 2.2px rgba(0, 0, 0, 0.001),
+      0 0.7px 5.3px rgba(0, 0, 0, 0.003),
+      0 1.3px 10px rgba(0, 0, 0, 0.005),
+      0 2.2px 17.9px rgba(0, 0, 0, 0.008),
+      0 4.2px 33.4px rgba(0, 0, 0, 0.014),
+      0 10px 80px rgba(0, 0, 0, 0.07);
+  }
+  // 给drawer加上滚动条
+  /deep/ .el-drawer__body {
+    overflow: auto;
+  }
+  // 修改drawer的header样式
+  /deep/ .el-drawer__header {
+    z-index: 9999;
+    border-bottom: 1px solid #fff;
+    box-shadow:
+      0 0px 29.9px rgba(0, 0, 0, 0.006),
+      0 0px 80px rgba(0, 0, 0, 0.07);
+    color: #409EFF;
+    margin-bottom: 0;
+    padding-bottom: 13px;
+    span {
+      font-weight: bold;
+      font-size: 23px !important;
+    }
+    // 去除关闭按钮点击时的边框线
+    .el-drawer__close-btn {
+      outline: none;
+    }
+  }
 }
 </style>
