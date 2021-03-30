@@ -1,4 +1,8 @@
 import Vue from 'vue'
-import { Backtop } from 'element-ui'
+import { 
+  Backtop,
+  Pagination,
+} from 'element-ui'
 
 Vue.use(Backtop)
+Vue.use(Pagination)
