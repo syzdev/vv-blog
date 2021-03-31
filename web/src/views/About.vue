@@ -1,9 +1,8 @@
 <template>
   <div class="about">
-    关于
+    <h2>关于</h2>
   </div>
 </template>
 
 <style lang="scss" scoped>
-
 </style>

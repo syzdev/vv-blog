@@ -25,6 +25,9 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model="model.title" placeholder="请输入文章标题"></el-input>
       </el-form-item>
+      <el-form-item label="摘要" prop="desc">
+        <el-input v-model="model.desc" placeholder="请输入文章摘要"></el-input>
+      </el-form-item>
       <el-form-item label="内容">
         <el-tabs type="border-card" v-model="model.format">
           <el-tab-pane label="Markdown编辑器" name="md"><mavon-editor ref="md" @imgAdd="$imgAdd" v-model="model.body"/></el-tab-pane>

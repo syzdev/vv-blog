@@ -8,6 +8,7 @@ const schema = new mongoose.Schema({
   title: { type: String },
   body: { type: String },
   format: { type: String },
+  desc: { type: String },
 }, {
   // 添加时间戳，包含createAt和updateAt
   timestamps: true

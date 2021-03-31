@@ -5,7 +5,7 @@
         <!-- <div class="article-category" v-for="category in item.category" :key="category._id">[{{category.name}}]</div> -->
         <router-link :to="`/article/${item._id}`">{{ item.title }}</router-link>
       </div>
-      <div class="article-desc">{{ item.body }}</div>
+      <div class="article-desc">{{ item.desc }}</div>
       <div class="article-detail">
         posted @ {{ item.updatedAt | timeFormat }}
       </div>
@@ -75,6 +75,15 @@ export default {
     border-radius: 5px;
     border-bottom: 1px solid #f5f5f5;
     color: #586069;
+    // box-sizing: border-box;
+    &:hover {
+      box-shadow:
+        0 1.3px 13.2px -38px rgba(0, 0, 0, 0.001),
+        0 3.7px 23.2px -38px rgba(0, 0, 0, 0.003),
+        0 10.2px 34px -38px rgba(0, 0, 0, 0.006),
+        0 100px 80px -38px rgba(0, 0, 0, 0.03)
+      ;
+    }
     .articel-title {
       font-size: 20px;
       font-weight: bold;
