@@ -41,12 +41,22 @@
         <router-view />
       </div>
     </div>
-    
-    <el-backtop><i class="el-icon-arrow-up"></i></el-backtop>
+    <!-- el-backtop组件的target属性一定要是产生滚动的组件 -->
+    <el-backtop target=".parallax" :right="100" :bottom="100"><i class="el-icon-arrow-up"></i></el-backtop>
   </div>
 </template>
 
 <script>
+export default {
+  methods: {
+    // handleScroll() {
+    //   // alert("123123")
+    //   document.getElementById("target").scrollIntoView( {
+    //     behavior: 'smooth'
+    //   });
+    // }
+  },  
+}
 </script>
 
 <style lang="scss">
