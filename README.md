@@ -26,22 +26,33 @@
 
 # 📦️ 安装
 
-下载安装`Node.js`和`MongoDB`，分别进入`admin`、`server`及`web`目录下，执行以下命令：
+1. 下载安装`Node.js`和`MongoDB`；
 
-```shell
-# 1.克隆到本地
-git clone https://github.com/syzdev/vv-blog.git
+2. 将项目克隆到本地；
 
-# 2.分别进入上述三个目录中安装
-npm install
+   ```shell
+   # 克隆到本地
+   git clone https://github.com/syzdev/vv-blog.git
+   ```
 
-# 3.分别进入上述三个目录中启动
-npm run serve
-```
+3. 分别进入`admin`、`server`及`web`目录下，执行以下命令：
+
+   ```shell
+   # 安装
+   npm install
+   
+   # 启动
+   npm run serve
+   ```
+
+   
+
 # 🖼️ 截图
 
-<img src="./readme_images/admin-1.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
 <img src="./readme_images/admin-2.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
+<img src="./readme_images/admin-1.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
+<img src="./readme_images/admin-3.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
+<img src="./readme_images/web-3.gif" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
 <img src="./readme_images/web-1.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
 <img src="./readme_images/web-2.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
 
