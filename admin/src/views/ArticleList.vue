@@ -63,6 +63,7 @@
       show-close
       size="898px"
       :visible.sync="drawer"
+      @close = "handleArticelPreviewClose"
       >
       <template slot="title" >
         <span style="font-size: 20px;">{{articlePreviewModel.title}}</span>
@@ -95,12 +96,17 @@ export default {
     }
   },
   methods: {
+    // 打开文章预览，获取文章内容
     async handleArticlePreview(id) {
       // 打开drawer
       this.drawer = true
       // 请求文章内容
       const res = await this.$http.get(`rest/article/${id}`)
       this.articlePreviewModel = res.data
+    },
+    // 文章预览关闭回调
+    handleArticelPreviewClose() {
+      this.articlePreviewModel = {}
     },
     goBack() {
       this.$router.go(-1)
