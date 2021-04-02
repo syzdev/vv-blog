@@ -3,7 +3,7 @@
     <el-page-header @back="goBack" content="文章列表"></el-page-header>
     <el-divider></el-divider>
     <!-- 表格内容部分 -->
-    <el-table :data="items" border>
+    <el-table v-if="items.length !== 0" :data="items" border>
       <el-table-column type="index" label="#" width="60"></el-table-column>
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
       <el-table-column prop="title" label="文章标题"></el-table-column>
@@ -44,8 +44,14 @@
         </template>
       </el-table-column>
     </el-table>
-    <!-- 分页部分 -->
+    <!-- 内容为空展示的图片 -->
+    <div v-else class="empty">
+      <img src="../assets/pic-empty.png" />
+      <span>空空如也~~~</span>
+    </div>
+    <!-- 分页组件 -->
     <el-pagination
+      v-if="items.length !== 0"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -63,10 +69,10 @@
       show-close
       size="898px"
       :visible.sync="drawer"
-      @close = "handleArticelPreviewClose"
-      >
-      <template slot="title" >
-        <span style="font-size: 20px;">{{articlePreviewModel.title}}</span>
+      @close="handleArticelPreviewClose"
+    >
+      <template slot="title">
+        <span style="font-size: 20px">{{ articlePreviewModel.title }}</span>
       </template>
       <mavon-editor
         :value="articlePreviewModel.body"
@@ -168,13 +174,21 @@ export default {
   }
   .el-table {
     border-radius: 2px;
-    box-shadow:
-      0 0.3px 2.2px rgba(0, 0, 0, 0.001),
-      0 0.7px 5.3px rgba(0, 0, 0, 0.003),
-      0 1.3px 10px rgba(0, 0, 0, 0.005),
-      0 2.2px 17.9px rgba(0, 0, 0, 0.008),
-      0 4.2px 33.4px rgba(0, 0, 0, 0.014),
+    box-shadow: 0 0.3px 2.2px rgba(0, 0, 0, 0.001),
+      0 0.7px 5.3px rgba(0, 0, 0, 0.003), 0 1.3px 10px rgba(0, 0, 0, 0.005),
+      0 2.2px 17.9px rgba(0, 0, 0, 0.008), 0 4.2px 33.4px rgba(0, 0, 0, 0.014),
       0 10px 80px rgba(0, 0, 0, 0.07);
+  }
+  .empty {
+    text-align: center;
+    img {
+      vertical-align: middle;
+      height: 600px;
+    }
+    span {
+      font-size: 35px;
+      color: #304156;
+    }
   }
   // 给drawer加上滚动条
   /deep/ .el-drawer__body {
@@ -184,10 +198,9 @@ export default {
   /deep/ .el-drawer__header {
     z-index: 9999;
     border-bottom: 1px solid #fff;
-    box-shadow:
-      0 0px 29.9px rgba(0, 0, 0, 0.006),
+    box-shadow: 0 0px 29.9px rgba(0, 0, 0, 0.006),
       0 0px 80px rgba(0, 0, 0, 0.07);
-    color: #409EFF;
+    color: #409eff;
     margin-bottom: 0;
     padding-bottom: 13px;
     span {

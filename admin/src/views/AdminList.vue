@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <el-page-header @back="goBack" content="账号列表"></el-page-header>
     <el-divider></el-divider>
     <el-table :data="items" border>
@@ -26,6 +26,7 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- 分页组件 -->
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -97,19 +98,21 @@ export default {
 }
 </script>
 
-<style scoped>
-.el-pagination {
-  text-align: center;
-  margin-top: 20px;
-}
-.el-table {
-  border-radius: 2px;
-  box-shadow:
-    0 0.3px 2.2px rgba(0, 0, 0, 0.001),
-    0 0.7px 5.3px rgba(0, 0, 0, 0.003),
-    0 1.3px 10px rgba(0, 0, 0, 0.005),
-    0 2.2px 17.9px rgba(0, 0, 0, 0.008),
-    0 4.2px 33.4px rgba(0, 0, 0, 0.014),
-    0 10px 80px rgba(0, 0, 0, 0.07);
+<style lang="scss" scoped>
+.container {
+  .el-pagination {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .el-table {
+    border-radius: 2px;
+    box-shadow:
+      0 0.3px 2.2px rgba(0, 0, 0, 0.001),
+      0 0.7px 5.3px rgba(0, 0, 0, 0.003),
+      0 1.3px 10px rgba(0, 0, 0, 0.005),
+      0 2.2px 17.9px rgba(0, 0, 0, 0.008),
+      0 4.2px 33.4px rgba(0, 0, 0, 0.014),
+      0 10px 80px rgba(0, 0, 0, 0.07);
+  }
 }
 </style>
