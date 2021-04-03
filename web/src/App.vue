@@ -2,60 +2,49 @@
   <div id="app">
     <div class="parallax">
       <div class="parallax__layer parallax__layer__0">
-        <img
-          src="./assets/bg/layer_0.png"
-        />
+        <img src="./assets/bg/layer_0.png" />
       </div>
       <div class="parallax__layer parallax__layer__1">
-        <img
-          src="./assets/bg/layer_1.png"
-        />
+        <img src="./assets/bg/layer_1.png" />
       </div>
       <div class="parallax__layer parallax__layer__2">
-        <img
-          src="./assets/bg/layer_2.png"
-        />
+        <img src="./assets/bg/layer_2.png" />
       </div>
       <div class="parallax__layer parallax__layer__3">
-        <img
-          src="./assets/bg/layer_3.png"
-        />
+        <img src="./assets/bg/layer_3.png" />
       </div>
       <div class="parallax__layer parallax__layer__4">
-        <img
-          src="./assets/bg/layer_4.png"
-        />
+        <img src="./assets/bg/layer_4.png" />
       </div>
       <div class="parallax__layer parallax__layer__5">
-        <img
-          src="./assets/bg/layer_5.png"
-        />
+        <img src="./assets/bg/layer_5.png" />
       </div>
       <div class="parallax__layer parallax__layer__6">
-        <img
-          src="./assets/bg/layer_6.png"
-        />
+        <img src="./assets/bg/layer_6.png" />
       </div>
-      <div class="parallax__cover">
-        <!-- <h2 style="color: #fff" @click="handleScroll" id="target">123123</h2> -->
+      <h1 @click="handleScroll" class="scroll-btn">
+        <i class="el-icon-arrow-down"></i>
+      </h1>
+      <div class="parallax__cover" id="scroll-target">
         <router-view />
       </div>
     </div>
     <!-- el-backtop组件的target属性一定要是产生滚动的组件 -->
-    <el-backtop target=".parallax" :right="100" :bottom="100"><i class="el-icon-arrow-up"></i></el-backtop>
+    <el-backtop target=".parallax" :right="100" :bottom="80"
+      ><i class="el-icon-arrow-up"></i
+    ></el-backtop>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    // handleScroll() {
-    //   // alert("123123")
-    //   document.getElementById("target").scrollIntoView( {
-    //     behavior: 'smooth'
-    //   });
-    // }
-  },  
+    handleScroll() {
+      document.getElementById('scroll-target').scrollIntoView({
+        behavior: 'smooth',
+      })
+    },
+  },
 }
 </script>
 
@@ -92,6 +81,32 @@ a:active {
   color: pink;
 }
 
+.scroll-btn {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  animation: rotate 0.75s infinite;
+  cursor: pointer;
+  color: #fff;
+}
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  25% {
+    transform: translate(-50%, -40%);
+  }
+  50% {
+    transform: translate(-50%, -30%);
+  }
+  75% {
+    transform: translate(-50%, -40%);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
 .parallax {
   perspective: 100px;
   height: 100vh;
@@ -106,21 +121,21 @@ a:active {
   // margin-left: -150px;
 }
 
-.parallax__layer{
+.parallax__layer {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  img{
+  img {
     display: block;
     position: absolute;
     bottom: 0;
   }
 }
 
-.parallax__cover{
-  background: #2D112B;
+.parallax__cover {
+  background: #2d112b;
   display: block;
   position: absolute;
   top: 100%;
@@ -134,8 +149,8 @@ $parallax__layers: 6;
 
 @for $i from 0 through $parallax__layers {
   $x: ($parallax__layers - $i) / 2;
-  .parallax__layer__#{$i}{
-     transform: translateZ(-100 * $x#{px}) scale($x + 1);
+  .parallax__layer__#{$i} {
+    transform: translateZ(-100 * $x#{px}) scale($x + 1);
   }
 }
 </style>

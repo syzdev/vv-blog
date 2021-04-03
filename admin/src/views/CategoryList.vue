@@ -26,11 +26,8 @@
         </template>
       </el-table-column>
     </el-table>
-    <!-- 内容为空展示的图片 -->
-    <div v-else class="empty">
-      <img src="../assets/pic-empty.png" />
-      <span>空空如也~~~</span>
-    </div>
+    <!-- 内容为空展示的内容 -->
+    <EmptyPage v-else />
     <!-- 分页组件 -->
     <el-pagination
       v-if="items.length !== 0"
@@ -48,7 +45,11 @@
 </template>
 
 <script>
+import EmptyPage from '../components/EmptyPage'
 export default {
+  components: {
+    EmptyPage,
+  },
   data() {
     return {
       items: [],
@@ -115,17 +116,6 @@ export default {
       0 0.7px 5.3px rgba(0, 0, 0, 0.003), 0 1.3px 10px rgba(0, 0, 0, 0.005),
       0 2.2px 17.9px rgba(0, 0, 0, 0.008), 0 4.2px 33.4px rgba(0, 0, 0, 0.014),
       0 10px 80px rgba(0, 0, 0, 0.07);
-  }
-  .empty {
-    text-align: center;
-    img {
-      vertical-align: middle;
-      height: 600px;
-    }
-    span {
-      font-size: 35px;
-      color: #304156;
-    }
   }
 }
 </style>
