@@ -3,7 +3,7 @@
     <el-page-header @back="goBack" content="文章列表"></el-page-header>
     <el-divider></el-divider>
     <!-- 表格内容部分 -->
-    <el-table v-if="items.length !== 0" :data="items" border>
+    <el-table v-if="total !== 0" :data="items" border>
       <el-table-column type="index" label="#" width="60"></el-table-column>
       <el-table-column prop="_id" label="ID" width="300"></el-table-column>
       <el-table-column prop="title" label="文章标题"></el-table-column>
@@ -48,7 +48,7 @@
     <EmptyPage v-else />
     <!-- 分页组件 -->
     <el-pagination
-      v-if="items.length !== 0"
+      v-if="total !== 0"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
@@ -96,7 +96,7 @@ export default {
     return {
       items: [], // 表格数据
       currentPage: 1, // 当前页码
-      pageSize: 5, // 每页显示的数据个数
+      pageSize: 10, // 每页显示的数据个数
       total: 0, // 总数据个数
       drawer: false, // 文章预览drawer
       articlePreviewModel: {}, // 保存文章预览的model

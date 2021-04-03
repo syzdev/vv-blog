@@ -40,7 +40,7 @@ module.exports = app => {
     // 将传过来的字符串转换为数字，否则报错'skip' field must be numeric.
     const page = parseInt(req.params.page)
     const size = parseInt(req.params.size)
-    const items = await req.Model.find().skip(((page-1)*size)).limit(size)
+    const items = await req.Model.find().skip(((page - 1) * size)).limit(size)
     // const total = await req.Model.find().count()
     res.send(items)
   })
