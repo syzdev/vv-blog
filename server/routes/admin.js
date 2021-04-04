@@ -45,6 +45,7 @@ module.exports = app => {
     res.send(items)
   })
 
+  // 引入权限和资源中间件
   const authMiddleware = require('../middleware/auth')
   const resourceMiddleware = require('../middleware/resource')
 
@@ -74,6 +75,12 @@ module.exports = app => {
     // 返回token
     const token = jwt.sign({ id: user._id }, app.get('secret'))
     res.send({ token, username, avatar: user.avatar })
+  })
+
+  // 获取管理员账号的数量
+  app.get('/admin/api/admins', async (req, res) => {
+    const count = await Admin.find().count()
+    res.send(count)
   })
 
   // 错误处理函数，处理assert抛出的异常

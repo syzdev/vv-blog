@@ -5,11 +5,9 @@
       <span>时间：{{ model.updatedAt | timeFormat }}</span>
       <span>分类：</span>
       <span class="desc-category">
-        <span
-          v-for="category in model.category"
-          :key="category._id"
-          >{{ category.name }}</span
-        >
+        <span v-for="category in model.category" :key="category._id">{{
+          category.name
+        }}</span>
       </span>
     </div>
     <mavon-editor
@@ -58,7 +56,7 @@ export default {
   margin-bottom: 20px;
   color: #999;
   text-align: center;
-  >span:nth-child(2) {
+  > span:nth-child(2) {
     padding-left: 30px;
   }
   .desc-category span:not(:last-child):after {

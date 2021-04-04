@@ -28,6 +28,7 @@
           <div class="login-button">
             <el-button type="primary" native-type="submit">登录</el-button>
             <el-button type="danger" @click="resetLoginForm">重置</el-button>
+            <el-button type="info" @click="loginHelp">帮助</el-button>
           </div>
         </el-form-item>
       </el-form>
@@ -36,6 +37,7 @@
 </template>
 
 <script>
+import axios from 'axios' // 不能使用原型上的$http，因为baseURL不同
 export default {
   data() {
     return {
@@ -67,10 +69,35 @@ export default {
     }
   },
   methods: {
+    // 管理员账号初始化
+    async loginHelp() {
+      // 先查询数据库中账号的个数，若数据库中没有账号，则新建一个账号
+      const res = await this.$http.get('admins')
+      const count = res.data
+      if (count === 0) {
+        await axios.post('http://localhost:3000/init/api/admin', {
+          username: 'admin',
+          password: 'admin',
+        })
+        this.$notify({
+          title: '请登录',
+          message: '请使用账号admin（密码admin）进行登录',
+          type: 'success',
+          duration: 0,
+        })
+      } else {
+        this.$notify({
+          title: '请登录',
+          message: '请输入账号和密码登录',
+          type: 'info',
+        })
+      }
+    },
+    // 点击重置按钮，重置表单的内容
     resetLoginForm() {
-      // 点击重置按钮，重置表单的内容
       this.$refs.loginFormRef.resetFields()
     },
+    // 登录
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
         // 验证未通过，直接返回

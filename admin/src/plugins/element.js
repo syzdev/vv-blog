@@ -33,6 +33,7 @@ import {
   Tabs,
   TabPane,
   Drawer,
+  Notification,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -68,3 +69,4 @@ Vue.use(Drawer)
 Vue.prototype.$message = Message
 Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$notify = Notification
