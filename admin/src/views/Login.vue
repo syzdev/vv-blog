@@ -1,6 +1,10 @@
 <template>
   <div class="login-page">
-    <el-card class="login-card" header="系统登录" body-style="{padding:'80px'}">
+    <el-card
+      class="login-card fade-in-down"
+      header="系统登录"
+      body-style="{padding:'80px'}"
+    >
       <!-- 原生提交方式并阻止跳转页面 -->
       <el-form
         @submit.native.prevent="login"
@@ -142,6 +146,21 @@ export default {
       display: flex;
       margin-top: 25px;
       justify-content: space-evenly;
+    }
+  }
+  .fade-in-down {
+    animation-name: fadeInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
     }
   }
 }
