@@ -19,6 +19,7 @@
       :scrollStyle="true"
       :ishljs="true"
       :boxShadow="false"
+      codeStyle="atom-one-dark"
     />
   </div>
 </template>
@@ -61,6 +62,13 @@ export default {
   }
   .desc-category span:not(:last-child):after {
     content: '、';
+  }
+}
+// 修改highlight.js代码样式
+/deep/ .markdown-body pre {
+  font-size: 100% !important;
+  .hljs {
+    border-radius: 10px !important;
   }
 }
 </style>
