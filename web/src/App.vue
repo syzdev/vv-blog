@@ -53,9 +53,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-/* 避免滚动条造成页面闪烁 */
 body {
-  // overflow-y: scroll;
+  // overflow-y: scroll; // 避免滚动条造成页面闪烁
   background-color: #fedcc8;
   // background: url('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1640747396,1326062358&fm=26&gp=0.jpg');
 }
@@ -152,5 +151,24 @@ $parallax__layers: 6;
   .parallax__layer__#{$i} {
     transform: translateZ(-100 * $x#{px}) scale($x + 1);
   }
+}
+
+/* 修改滚动条样式 */
+.parallax::-webkit-scrollbar {
+  /* 滚动条整体样式，高宽分别对应横竖滚动条的尺寸 */
+  width: 10px;
+  height: 1px;
+}
+.parallax::-webkit-scrollbar-thumb {
+  /* 滚动条方块 */
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #2d112b;
+}
+.parallax::-webkit-scrollbar-track {
+  /* 滚动条轨道 */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: #fedcc8;
 }
 </style>
