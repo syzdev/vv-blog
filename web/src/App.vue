@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="parallax">
+      <!-- <h1>123</h1> -->
       <div class="parallax__layer parallax__layer__0">
         <img src="./assets/bg/layer_0.png" />
       </div>
@@ -126,6 +127,7 @@ a:active {
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: -99; // 使其他元素在背景之上
   img {
     display: block;
     position: absolute;

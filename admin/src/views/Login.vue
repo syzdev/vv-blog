@@ -121,8 +121,8 @@ export default {
           sessionStorage.username = res.data.username
           sessionStorage.avatar = res.data.avatar
         }
-        // 登录成功跳转到首页
-        this.$router.push('/')
+        // 登录成功跳转到文章列表页
+        this.$router.push('/article/list')
         this.$message({
           type: 'success',
           message: '登录成功！',

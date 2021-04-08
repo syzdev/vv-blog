@@ -32,7 +32,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "categoryedit" */ '../views/CategoryEdit.vue'),
         props: true
       },
-      
+
       {
         path: '/article/create',
         component: () => import(/* webpackChunkName: "articleedit" */ '../views/ArticleEdit.vue')
@@ -71,7 +71,13 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
-    meta: {ignoreAuth: true}
+    meta: { ignoreAuth: true }
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import(/* webpackChunkName: "notfound" */ '../views/NotFound.vue'),
+    // meta: {ignoreAuth: true}
   }
 ]
 
