@@ -68,7 +68,7 @@ export default {
 }
 .content {
   .article-card {
-    width: 900px;
+    // width: 900px;
     height: 160px;
     margin: 10px 0;
     padding: 5px;

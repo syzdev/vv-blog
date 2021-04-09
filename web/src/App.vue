@@ -23,7 +23,7 @@
       <div class="parallax__layer parallax__layer__6">
         <img src="./assets/bg/layer_6.png" />
       </div>
-      <h1 @click="handleScroll" class="scroll-btn">
+      <h1 @click="handleScroll" class="scroll-btn hidden-sm-and-down">
         <i class="el-icon-arrow-down"></i>
       </h1>
       <div class="parallax__cover" id="scroll-target">
@@ -31,7 +31,11 @@
       </div>
     </div>
     <!-- el-backtop组件的target属性一定要是产生滚动的组件 -->
-    <el-backtop target=".parallax" :right="100" :bottom="80"
+    <el-backtop
+      target=".parallax"
+      :right="100"
+      :bottom="80"
+      class="hidden-sm-and-down"
       ><i class="el-icon-arrow-up"></i
     ></el-backtop>
   </div>
@@ -57,7 +61,6 @@ export default {
 body {
   // overflow-y: scroll; // 避免滚动条造成页面闪烁
   background-color: #fedcc8;
-  // background: url('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1640747396,1326062358&fm=26&gp=0.jpg');
 }
 /*包含以下四种链接*/
 a {
@@ -80,7 +83,7 @@ a:hover {
 a:active {
   color: pink;
 }
-
+// 向下滚动按钮
 .scroll-btn {
   position: absolute;
   bottom: 0;
@@ -144,6 +147,16 @@ a:active {
   right: 0;
   // height: 2000px;
   // z-index: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .parallax__cover {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 $parallax__layers: 6;
