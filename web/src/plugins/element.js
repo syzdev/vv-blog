@@ -5,9 +5,15 @@ import {
   Pagination,
   Row,
   Col,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
 } from 'element-ui'
 
 Vue.use(Backtop)
 Vue.use(Pagination)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)

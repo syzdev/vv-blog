@@ -2,6 +2,7 @@
   <div id="app">
     <div class="parallax">
       <!-- <h1>123</h1> -->
+      <!-- 首页背景 -->
       <div class="parallax__layer parallax__layer__0">
         <img src="./assets/bg/layer_0.png" />
       </div>
@@ -23,14 +24,16 @@
       <div class="parallax__layer parallax__layer__6">
         <img src="./assets/bg/layer_6.png" />
       </div>
+      <!-- 向下滚动按钮 -->
       <h1 @click="handleScroll" class="scroll-btn hidden-sm-and-down">
         <i class="el-icon-arrow-down"></i>
       </h1>
+      <!-- 内容区域 -->
       <div class="parallax__cover" id="scroll-target">
         <router-view />
       </div>
     </div>
-    <!-- el-backtop组件的target属性一定要是产生滚动的组件 -->
+    <!-- 回到顶部按钮，el-backtop组件的target属性一定要是产生滚动的组件 -->
     <el-backtop
       target=".parallax"
       :right="100"
@@ -149,16 +152,6 @@ a:active {
   // z-index: 2;
 }
 
-@media screen and (max-width: 768px) {
-  .parallax__cover {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-}
-
 $parallax__layers: 6;
 
 @for $i from 0 through $parallax__layers {
@@ -168,22 +161,35 @@ $parallax__layers: 6;
   }
 }
 
-/* 修改滚动条样式 */
-.parallax::-webkit-scrollbar {
-  /* 滚动条整体样式，高宽分别对应横竖滚动条的尺寸 */
-  width: 10px;
-  height: 1px;
+// 移动端样式
+@media screen and (max-width: 768px) {
+  .parallax__cover {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 }
-.parallax::-webkit-scrollbar-thumb {
-  /* 滚动条方块 */
-  border-radius: 10px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background: #2d112b;
-}
-.parallax::-webkit-scrollbar-track {
-  /* 滚动条轨道 */
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  background: #fedcc8;
+// 非移动端滚动条样式
+@media screen and (min-width: 768px) {
+  /* 修改滚动条样式 */
+  .parallax::-webkit-scrollbar {
+    /* 滚动条整体样式，高宽分别对应横竖滚动条的尺寸 */
+    width: 10px;
+    height: 1px;
+  }
+  .parallax::-webkit-scrollbar-thumb {
+    /* 滚动条方块 */
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #2d112b;
+  }
+  .parallax::-webkit-scrollbar-track {
+    /* 滚动条轨道 */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: #fedcc8;
+  }
 }
 </style>

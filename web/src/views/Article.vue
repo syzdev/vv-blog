@@ -10,6 +10,7 @@
         }}</span>
       </span>
     </div>
+    <!-- 点击图片存在显示问题，暂时关闭图片点击预览(imageClick)功能 -->
     <mavon-editor
       :value="model.body"
       :subfield="false"
@@ -20,6 +21,7 @@
       :ishljs="true"
       :boxShadow="false"
       codeStyle="atom-one-dark"
+      :imageClick="null"
     />
   </div>
 </template>

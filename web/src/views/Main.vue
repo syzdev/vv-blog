@@ -13,13 +13,30 @@
             <router-link to="/">vv-blog</router-link>
           </div>
           <div class="header-menu">
-            <ul>
+            <!-- 移动端的导航菜单 -->
+            <el-dropdown class="hidden-sm-and-up" trigger="click">
+              <i class="el-icon-menu"></i>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item
+                  ><router-link to="/">首页</router-link></el-dropdown-item
+                >
+                <el-dropdown-item
+                  ><router-link to="/">分类</router-link></el-dropdown-item
+                >
+                <el-dropdown-item
+                  ><router-link to="/about">关于</router-link></el-dropdown-item
+                >
+              </el-dropdown-menu>
+            </el-dropdown>
+            <!-- 非移动端的导航菜单 -->
+            <ul class="hidden-sm-and-down">
               <li><router-link to="/">首页</router-link></li>
               <li><router-link to="/">分类</router-link></li>
               <li><router-link to="/about">关于</router-link></li>
             </ul>
           </div>
         </div>
+        <!-- 文章区域 -->
         <transition name="slide-fade">
           <router-view></router-view>
         </transition>
@@ -39,6 +56,7 @@ export default {}
   align-items: center;
 }
 .container {
+  min-height: 100vh; // 兼容关于页面高度
   // width: 900px;
   // margin: 20px auto;
   padding: 30px;
@@ -68,6 +86,21 @@ export default {}
           margin: 0 20px;
         }
       }
+      .el-dropdown {
+        color: #409eff;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+// 移动端样式
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 2px 10px;
+    border-radius: 0px;
+    /deep/ .v-show-content {
+      padding: 4px !important;
     }
   }
 }
