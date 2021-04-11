@@ -86,32 +86,6 @@ a:hover {
 a:active {
   color: pink;
 }
-// 向下滚动按钮
-.scroll-btn {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  animation: rotate 0.75s infinite;
-  cursor: pointer;
-  color: #fff;
-}
-@keyframes rotate {
-  0% {
-    transform: translate(-50%, -50%);
-  }
-  25% {
-    transform: translate(-50%, -40%);
-  }
-  50% {
-    transform: translate(-50%, -30%);
-  }
-  75% {
-    transform: translate(-50%, -40%);
-  }
-  100% {
-    transform: translate(-50%, -50%);
-  }
-}
 
 .parallax {
   perspective: 100px;
@@ -125,31 +99,55 @@ a:active {
   // bottom: 0;
   // margin-left: -1500px;
   // margin-left: -150px;
-}
-
-.parallax__layer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -99; // 使其他元素在背景之上
-  img {
+  .parallax__layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -99; // 使其他元素在背景之上
+    img {
+      display: block;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+  .parallax__cover {
+    background: #2d112b;
     display: block;
     position: absolute;
-    bottom: 0;
+    top: 100%;
+    left: 0;
+    right: 0;
+    // height: 2000px;
+    // z-index: 2;
   }
-}
-
-.parallax__cover {
-  background: #2d112b;
-  display: block;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  // height: 2000px;
-  // z-index: 2;
+  // 向下滚动按钮
+  .scroll-btn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    animation: rotate 0.75s infinite;
+    cursor: pointer;
+    color: #fff;
+    @keyframes rotate {
+      0% {
+        transform: translate(-50%, -50%);
+      }
+      25% {
+        transform: translate(-50%, -40%);
+      }
+      50% {
+        transform: translate(-50%, -30%);
+      }
+      75% {
+        transform: translate(-50%, -40%);
+      }
+      100% {
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
 }
 
 $parallax__layers: 6;

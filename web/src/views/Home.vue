@@ -108,6 +108,15 @@ export default {
   .el-pagination {
     text-align: center;
     margin-top: 20px;
+    // 移动端分页样式
+    @media screen and (max-width: 768px) {
+      /deep/.el-pagination__total,
+      /deep/.el-pagination__sizes,
+      /deep/.el-input,
+      /deep/.el-pagination__jump {
+        display: none;
+      }
+    }
   }
 }
 </style>

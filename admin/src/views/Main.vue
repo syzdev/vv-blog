@@ -1,8 +1,6 @@
 <template>
   <el-container style="height: 100vh">
-    <el-aside
-      :width="isCollapse ? '65px' : '200px'"
-    >
+    <el-aside :width="isCollapse ? '65px' : '200px'">
       <el-menu
         router
         unique-opened
