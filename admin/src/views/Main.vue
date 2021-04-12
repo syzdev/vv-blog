@@ -117,7 +117,7 @@
       </el-header>
 
       <el-main>
-        <transition name="slide-fade">
+        <transition name="fade-transform" mode="out-in">
           <router-view :key="$route.path"></router-view>
         </transition>
       </el-main>
@@ -225,20 +225,29 @@ export default {
 }
 
 /* 页面切换淡出特效 */
-.slide-fade-enter {
-  transform: translateX(-1%);
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
+}
+
+.fade-enter,
+.fade-leave-active {
   opacity: 0;
 }
-.slide-fade-enter-active {
-  transition: 0.25s;
+
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.35s;
 }
-.slide-fade-enter-to {
-  opacity: 0.7;
-}
-.slide-fade-leave {
+
+.fade-transform-enter {
   opacity: 0;
+  transform: translateX(-20px);
 }
-.slide-fade-leave-to {
+
+.fade-transform-leave-to {
   opacity: 0;
+  transform: translateX(20px);
 }
 </style>

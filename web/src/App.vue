@@ -122,6 +122,16 @@ a:active {
     // height: 2000px;
     // z-index: 2;
   }
+  // 移动端样式
+  @media screen and (max-width: 768px) {
+    .parallax__cover {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
   // 向下滚动按钮
   .scroll-btn {
     position: absolute;
@@ -159,16 +169,6 @@ $parallax__layers: 6;
   }
 }
 
-// 移动端样式
-@media screen and (max-width: 768px) {
-  .parallax__cover {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-}
 // 非移动端滚动条样式
 @media screen and (min-width: 768px) {
   /* 修改滚动条样式 */

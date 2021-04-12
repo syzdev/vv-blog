@@ -37,7 +37,7 @@
           </div>
         </div>
         <!-- 文章区域 -->
-        <transition name="slide-fade">
+        <transition name="fade-transform" mode="out-in">
           <router-view></router-view>
         </transition>
       </div>
@@ -106,30 +106,29 @@ export default {}
 }
 
 /* 页面切换淡出特效 */
-.slide-fade-enter {
-  transition: all 0.2s;
-  opacity: 0;
-  transform: translateX(-1.5%);
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
 }
-.slide-fade-enter-active {
-  opacity: 0.7;
-  transition: all 0.5s;
-}
-.slide-fade-enter-to {
-  opacity: 0.7;
-  transition: all 0.3s;
-}
-.slide-fade-leave-active {
-  opacity: 0;
-  transition: all 0.2s;
-  transform: translateX(1.5%);
-}
-.slide-fade-leave {
-  // transition: all 0.2s;
+
+.fade-enter,
+.fade-leave-active {
   opacity: 0;
 }
-.slide-fade-leave-to {
-  // transition: all 0.2s;
+
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.25s;
+}
+
+.fade-transform-enter {
   opacity: 0;
+  transform: translateX(-20px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
 }
 </style>
