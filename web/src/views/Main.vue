@@ -59,7 +59,7 @@ export default {}
   min-height: 100vh; // 兼容关于页面高度
   // width: 900px;
   // margin: 20px auto;
-  padding: 30px;
+  padding: 30px 80px;
   border-radius: 20px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
     0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),

@@ -2,8 +2,11 @@
   <div v-if="model">
     <div class="title">{{ model.title }}</div>
     <div class="desc">
-      <span>时间：{{ model.updatedAt | timeFormat }}</span>
-      <span>分类：</span>
+      <span class="desc-date"
+        ><i class="el-icon-date"></i>{{ model.updatedAt | timeFormat }}</span
+      >
+      <span><i class="el-icon-price-tag"></i></span>
+      <!-- 一个文章的分类可能有多个，需要遍历展示 -->
       <span class="desc-category">
         <span v-for="category in model.category" :key="category._id">{{
           category.name
@@ -62,12 +65,28 @@ export default {
   > span:nth-child(2) {
     padding-left: 30px;
   }
+  // 移动端样式
+  @media screen and (max-width: 768px) {
+    > span:nth-child(2) {
+      padding-left: 0px;
+    }
+    // 通过伪元素完成换行
+    .desc-date:after {
+      content: '\A';
+      white-space: pre;
+    }
+  }
   .desc-category span:not(:last-child):after {
     content: '、';
+  }
+  i {
+    font-size: 20px;
+    margin-right: 0.2em;
   }
 }
 // 修改highlight.js代码样式
 /deep/ .markdown-body pre {
+  padding: 0px;
   font-size: 100% !important;
   .hljs {
     border-radius: 10px !important;
