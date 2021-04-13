@@ -216,6 +216,7 @@ export default {
 
 .el-aside {
   background-color: #304156;
+  transition: all 0.25s ease-in-out;
   .el-menu {
     border-right: none;
     .el-submenu i {
