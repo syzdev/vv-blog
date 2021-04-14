@@ -25,7 +25,7 @@
 </p>
 
 
-# 💻 环境
+# 🖥️ 环境
 
 - [Vue.js](https://www.npmjs.com/package/vue/v/2.6.11) ^2.6.11
 - [element-ui](https://github.com/ElemeFE/element) ^2.4.5
@@ -56,12 +56,17 @@
 
 
 # 🖼️ 截图
-<img src="./readme_images/web-1.gif" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
-<img src="./readme_images/web-2.gif" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
-<img src="./readme_images/web-3.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
-<img src="./readme_images/admin-2.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
-<img src="./readme_images/admin-1.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
-<img src="./readme_images/admin-3.png" style="box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.04);">
+## 📝 博客页面
+<img src="./readme_images/web-1.gif" >
+<img src="./readme_images/web-2.gif" >
+## 💻 后台管理页面
+<img src="./readme_images/admin-1.gif" >
+<img src="./readme_images/admin-3.png" >
+<img src="./readme_images/admin-2.png" >
+<img src="./readme_images/admin-4.png" >
+
+## 📱 移动端页面
+<img src="./readme_images/mobile-1.png" >
 
 # 📜 开源许可
 MIT License

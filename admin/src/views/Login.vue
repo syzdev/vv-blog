@@ -122,7 +122,7 @@ export default {
           sessionStorage.avatar = res.data.avatar
         }
         // 登录成功跳转到文章列表页
-        this.$router.push('/article/list')
+        this.$router.push('/article/create')
         this.$message({
           type: 'success',
           message: '登录成功！',
