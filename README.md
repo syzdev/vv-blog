@@ -56,9 +56,11 @@
 
 
 # 🖼️ 截图
+
 ## 📝 博客页面
 <img src="./readme_images/web-1.gif" >
 <img src="./readme_images/web-2.gif" >
+
 ## 💻 后台管理页面
 <img src="./readme_images/admin-1.gif" >
 <img src="./readme_images/admin-3.png" >
