@@ -26,26 +26,62 @@
       codeStyle="atom-one-dark"
       :imageClick="null"
     />
+    <!-- 评论部分 -->
+    <h2>评论</h2>
+    <!-- 评论文本框 -->
+    <comment-textarea
+      @comment-success="getArticleComment"
+      type="parent"
+      :articleId="id"
+      placeholder="输入留言内容"
+    ></comment-textarea>
+    <!-- 评论列表 -->
+    <comment-list
+      @update-comment-list="getArticleComment"
+      :commentsList="parentComment"
+      v-if="parentComment"
+      :articleId="id"
+    ></comment-list>
   </div>
 </template>
 
 <script>
+import CommentTextarea from '../components/CommentTextarea'
+import CommentList from '../components/CommentList'
 export default {
+  props: ['id'],
+  components: {
+    CommentTextarea,
+    CommentList,
+  },
   data() {
     return {
       model: null,
+      parentComment: [],
     }
   },
-  props: ['id'],
   methods: {
     async fetch() {
       const res = await this.$http.get(`article/${this.id}`)
       this.model = res.data
       console.log(res.data)
     },
+    async getArticleComment() {
+      const res = await this.$http.get(`/comment/${this.id}`)
+      const articleComment = res.data
+      this.parentComment = articleComment.filter(
+        (v) => v.parentCommentId == '10ce6d312016ac0000000000'
+      )
+      this.parentComment.forEach((c) => {
+        return (c.children = articleComment.filter(
+          (v) => v.parentCommentId == c._id
+        ))
+      })
+    },
   },
   created() {
     this.fetch()
+    this.getArticleComment()
   },
 }
 </script>
