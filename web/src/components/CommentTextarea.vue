@@ -93,8 +93,12 @@ export default {
       await this.$http.post('/comment', this.commentObj)
       this.commentObj.content = ''
       this.$emit('comment-success')
+      this.$message.success('评论成功！')
     },
     async register() {
+      if (!this.visitorInfo.qq) {
+        return this.$message.warning('请输入QQ账号！')
+      }
       let {
         data: { data: profile },
       } = await axios.get(`https://api.usuuu.com/qq/${this.visitorInfo.qq}`)
