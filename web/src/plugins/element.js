@@ -15,6 +15,7 @@ import {
   Form,
   FormItem,
   Message,
+  Divider,
 } from 'element-ui'
 
 Vue.use(Backtop)
@@ -30,4 +31,5 @@ Vue.use(Dialog)
 Vue.use(Drawer)
 Vue.use(Form)
 Vue.use(FormItem)
+Vue.use(Divider)
 Vue.prototype.$message = Message

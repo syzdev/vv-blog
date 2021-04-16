@@ -25,7 +25,7 @@
             >
           </span>
         </div>
-        <div>{{ comment.content }}</div>
+        <div class="comment-content">{{ comment.content }}</div>
         <div
           v-for="(childrenComment, i) in comment.children"
           :key="i"
@@ -50,11 +50,9 @@
                 </strong>
               </span>
             </div>
-            <div>
-              <span>
-                <span>@{{ childrenComment.atReplyName }}：</span>
-                <span>{{ childrenComment.content }}</span>
-              </span>
+            <div class="children-comment-content">
+              <span>@{{ childrenComment.atReplyName }}：</span>
+              <span>{{ childrenComment.content }}</span>
             </div>
           </div>
         </div>
@@ -129,28 +127,29 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding-top: 15px;
   .comment-container {
     display: flex;
     margin: 7px 0px;
     .visitor-avatar-1 {
-      text-align: left;
-      padding-right: 15px;
+      padding-right: 5px;
       img {
-        height: 40px;
+        height: 35px;
         border-radius: 50%;
       }
     }
     .comment-box {
       flex: 1;
-      padding: 5px;
+      padding: 1px 7px;
       border-radius: 10px;
       background-color: #f5f5f5;
       .comment-item {
-        margin: 5px 0px;
         .comment-nickname {
           margin-right: 10px;
         }
+      }
+      .comment-content {
+        margin: 3px 0px;
+        color: #333;
       }
       .comment-reply {
         display: none;
@@ -169,7 +168,7 @@ export default {
         margin-top: 10px;
         display: flex;
         .visitor-avatar-2 {
-          padding-right: 10px;
+          padding-right: 5px;
           img {
             border-radius: 50%;
             height: 30px;
@@ -178,13 +177,17 @@ export default {
         .children-comment-box {
           flex: 1;
           background-color: #ddd;
-          padding: 5px;
+          padding: 1px 7px;
           border-radius: 10px;
           .children-comment-item {
             margin: 5px 0px;
             .children-comment-nickname {
               margin-right: 10px;
             }
+          }
+          .children-comment-content {
+            margin: 3px 0px;
+            color: #333;
           }
         }
       }

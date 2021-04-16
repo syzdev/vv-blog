@@ -26,8 +26,11 @@
       codeStyle="atom-one-dark"
       :imageClick="null"
     />
+    <el-divider></el-divider>
     <!-- 评论部分 -->
-    <h2>评论</h2>
+    <div class="comment-title">
+      <span>评论</span>
+    </div>
     <!-- 评论文本框 -->
     <comment-textarea
       @comment-success="getArticleComment"
@@ -35,6 +38,7 @@
       :articleId="id"
       placeholder="输入留言内容"
     ></comment-textarea>
+    <el-divider></el-divider>
     <!-- 评论列表 -->
     <comment-list
       @update-comment-list="getArticleComment"
@@ -93,6 +97,11 @@ export default {
   margin-bottom: 20px;
   cursor: pointer;
   text-align: center;
+}
+.comment-title {
+  margin: 20px 0px;
+  text-align: center;
+  font-size: 25px;
 }
 .desc {
   margin-bottom: 20px;
