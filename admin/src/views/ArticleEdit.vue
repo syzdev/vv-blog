@@ -13,7 +13,11 @@
       :model="model"
     >
       <el-form-item label="所属分类" prop="category">
-        <el-select v-model="model.category" multiple placeholder="请选择分类（可多选）">
+        <el-select
+          v-model="model.category"
+          multiple
+          placeholder="请选择分类（可多选）"
+        >
           <el-option
             v-for="item in category"
             :key="item._id"
@@ -30,8 +34,15 @@
       </el-form-item>
       <el-form-item label="内容">
         <el-tabs type="border-card" v-model="model.format">
-          <el-tab-pane label="Markdown编辑器" name="md"><mavon-editor ref="md" @imgAdd="$imgAdd" v-model="model.body"/></el-tab-pane>
-          <el-tab-pane label="富文本编辑器" name="doc"><vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="tempModelBody"/></el-tab-pane>
+          <el-tab-pane label="Markdown编辑器" name="md"
+            ><mavon-editor ref="md" @imgAdd="$imgAdd" v-model="model.body"
+          /></el-tab-pane>
+          <el-tab-pane label="富文本编辑器" name="doc"
+            ><vue-editor
+              useCustomImageHandler
+              @image-added="handleImageAdded"
+              v-model="tempModelBody"
+          /></el-tab-pane>
         </el-tabs>
       </el-form-item>
       <el-form-item>
@@ -42,7 +53,7 @@
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor"
+import { VueEditor } from 'vue2-editor'
 export default {
   props: {
     id: {},
@@ -52,9 +63,9 @@ export default {
   },
   data() {
     return {
-      tempModelBody:'', // 富文本编辑器内容，model.body默认保存markdown编辑器内容
+      tempModelBody: '', // 富文本编辑器内容，model.body默认保存markdown编辑器内容
       model: {
-        format: "md", // 编辑器类型默认为markdown
+        format: 'md', // 编辑器类型默认为markdown
       },
       category: [], // 下拉框选择文本类型
       articleFormRules: {
@@ -75,7 +86,7 @@ export default {
   },
   methods: {
     // 处理Markdown编辑器自定义图片上传
-    async $imgAdd(pos, $file){
+    async $imgAdd(pos, $file) {
       const formData = new FormData()
       formData.append('file', $file)
       const res = await this.$http.post('upload', formData)
@@ -99,7 +110,7 @@ export default {
           return
         }
         // 编辑器类型默认为markdown，若是富文本类型，则要修改为富文本编辑器中的内容
-        if (this.model.format == "doc") {
+        if (this.model.format == 'doc') {
           this.model.body = this.tempModelBody
         }
         if (this.id) {
@@ -118,9 +129,9 @@ export default {
       const res = await this.$http.get(`rest/article/${this.id}`)
       this.model = res.data
       // 获取到的文章是富文本内容，修改成富文本编辑器的data
-      if (this.model.format == "doc") {
+      if (this.model.format == 'doc') {
         this.tempModelBody = this.model.body
-        this.model.body = ""
+        this.model.body = ''
       }
     },
     async fetchCategory() {
@@ -131,6 +142,18 @@ export default {
   created() {
     this.fetchCategory()
     this.id && this.fetch()
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.model.body === '' && this.tempModelBody === '') {
+      next()
+    } else {
+      const answer = window.confirm('您的编辑还未保存，是否离开？')
+      if (answer) {
+        next()
+      } else {
+        next(false)
+      }
+    }
   },
 }
 </script>
