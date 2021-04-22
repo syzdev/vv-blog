@@ -60,6 +60,8 @@
 ## 📝 博客页面
 <img src="./readme_images/web-1.gif" >
 <img src="./readme_images/web-2.gif" >
+<img src="./readme_images/web-4.jpg" >
+<img src="./readme_images/web-3.jpg" >
 
 ## 💻 后台管理页面
 <img src="./readme_images/admin-1.gif" >
