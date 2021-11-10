@@ -144,7 +144,7 @@ export default {
     this.id && this.fetch()
   },
   beforeRouteLeave(to, from, next) {
-    if (this.model.body === '' && this.tempModelBody === '') {
+    if (!this.model.body  && !this.tempModelBody) {
       next()
     } else {
       const answer = window.confirm('您的编辑还未保存，是否离开？')
